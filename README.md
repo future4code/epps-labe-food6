@@ -1,4 +1,11 @@
-futureEats Theme
+futureEats
+
+## Integrantes do grupo:
+
+- ### Ástrid Bemporad - astridbemporad@gmail.com
+- ### Victor Cardoso - cpt.victor@hotmail.com
+- ### Bruno Silva - silva.bruno@outlook.com
+- ### Gabriela Pilegi - gpilegi@gmail.com
 
 ## Rotas:
 
@@ -24,3 +31,8 @@ futureEats Theme
 - ### Dishes Card
 - ### Filter Restaurant
 - ### Order Status
+
+## Functionalities
+
+- ### Global Theme
+- ### Dark/Light Mode

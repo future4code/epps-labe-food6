@@ -18,7 +18,7 @@ const futureEatsTheme = extendTheme({
     },
     neutralPalette: {
       100: "#FBF1EF",
-      900: "#070C0E",
+      900: "#07080D",
     },
   },
   components: {},
