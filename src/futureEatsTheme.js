@@ -1,5 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
-
+import Button from "./styles/Button";
 const futureEatsTheme = extendTheme({
   styles: {
     global: {
@@ -17,11 +17,14 @@ const futureEatsTheme = extendTheme({
       400: "#5CB646",
     },
     neutralPalette: {
-      100: "#FBF1EF",
+      100: "#fffed",
+      500: "#B8B8B8",
       900: "#07080D",
     },
   },
-  components: {},
+  components: {
+    Button,
+  },
 });
 
 export default futureEatsTheme;
