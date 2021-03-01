@@ -8,6 +8,7 @@ const futureEatsTheme = extendTheme({
         margin: 0,
         boxSizing: "border-box",
         fontFamily: "Roboto, sans-serif",
+        bgColor: "neutralPalette.100",
       },
     },
   },
