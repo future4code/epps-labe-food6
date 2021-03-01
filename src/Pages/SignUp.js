@@ -50,7 +50,7 @@ const SignUp = () => {
         >
           <Box as="form" h="100%" w="100%" paddingBottom="6">
             <FormControl>
-              <FormLabel fontSize="lg" marginTop="2">
+              <FormLabel fontSize="lg" marginTop="3">
                 Nome
               </FormLabel>
               <Input
@@ -61,7 +61,7 @@ const SignUp = () => {
               />
             </FormControl>
             <FormControl>
-              <FormLabel fontSize="lg" marginTop="2">
+              <FormLabel fontSize="lg" marginTop="3">
                 E-mail
               </FormLabel>
               <Input
@@ -72,7 +72,7 @@ const SignUp = () => {
               />
             </FormControl>
             <FormControl>
-              <FormLabel fontSize="lg" marginTop="2">
+              <FormLabel fontSize="lg" marginTop="3">
                 CPF
               </FormLabel>
               <Input
@@ -83,7 +83,7 @@ const SignUp = () => {
               />
             </FormControl>
             <FormControl>
-              <FormLabel fontSize="lg" marginTop="2">
+              <FormLabel fontSize="lg" marginTop="3">
                 Senha
               </FormLabel>
               <Input
@@ -95,7 +95,7 @@ const SignUp = () => {
               />
             </FormControl>
             <FormControl>
-              <FormLabel fontSize="lg" marginTop="2">
+              <FormLabel fontSize="lg" marginTop="3">
                 Confirmar senha
               </FormLabel>
               <Input

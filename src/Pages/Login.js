@@ -1,10 +1,16 @@
 import React, { useState } from "react";
-import { Button, ButtonGroup, FormControl, FormLabel, Input, InputGroup, InputRightElement, Show } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  InputRightElement,
+} from "@chakra-ui/react";
 
 const Login = () => {
-
-  const [show, setShow] = useState(false)
-  const handleClick = () => setShow(!show)
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
 
   return (
     <div>

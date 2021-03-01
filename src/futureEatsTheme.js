@@ -14,10 +14,12 @@ const futureEatsTheme = extendTheme({
   },
   colors: {
     greenPalette: {
+      200: "#98D189",
+      300: "#7EC66C",
       400: "#5CB646",
     },
     neutralPalette: {
-      100: "#fffed",
+      100: "#F2F4F7",
       500: "#B8B8B8",
       900: "#07080D",
     },

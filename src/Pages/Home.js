@@ -1,17 +1,28 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import React from "react";
+import { useHistory } from "react-router-dom";
+
+import { goToLogin, goToSignUp } from "../routing/Coordinator";
 
 const Home = () => {
+  const history = useHistory();
   return (
-    <Flex as="main" w="100vw" h="100vh" direction="column" align="center">
+    <Flex
+      as="main"
+      w="100vw"
+      h="100vh"
+      direction="column"
+      align="center"
+      justify="space-between"
+      bgColor="neutralPalette.900"
+    >
       <Flex
-        as="article"
+        as="section"
         w="100%"
-        h="100%"
+        h="80%"
         direction="column"
         align="center"
         justify="center"
-        bgColor="neutralPalette.900"
       >
         <Box as="span">
           <Text
@@ -33,6 +44,17 @@ const Home = () => {
             Eats
           </Text>
         </Box>
+      </Flex>
+      <Flex
+        as="footer"
+        h="20%"
+        w="100%"
+        padding="4"
+        align="center"
+        justify="space-around"
+      >
+        <Button onClick={() => goToLogin(history)}>Login</Button>
+        <Button onClick={() => goToSignUp(history)}>Cadastrar</Button>
       </Flex>
     </Flex>
   );
