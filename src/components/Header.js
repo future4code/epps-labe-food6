@@ -2,8 +2,11 @@ import { Flex, IconButton, Text } from "@chakra-ui/react";
 import React from "react";
 
 import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { goHome } from "../routing/Coordinator";
+import { useHistory } from "react-router-dom";
 
 const Header = (props) => {
+  const history = useHistory();
   return (
     <Flex as="header" w="100vw" align="center" justify="space-between">
       <IconButton
@@ -12,6 +15,7 @@ const Header = (props) => {
         variant="ghost"
         color="neutralPalette.900"
         fontSize="32px"
+        onClick={() => goHome(history)}
       >
         voltar
       </IconButton>
