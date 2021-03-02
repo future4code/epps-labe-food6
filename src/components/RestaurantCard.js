@@ -20,7 +20,7 @@ const RestaurantCard = ({
       borderRadius="8px"
       border="1px lightgray solid"
     >
-      <Box isFullWidth paddingTop="0.5em">
+      <Box paddingTop="0.5em">
         <Image
           src={logoUrl}
           w="328px"
