@@ -3,14 +3,82 @@ import {
   Button,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
   Text,
+  useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import axios from "axios";
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import Header from "../components/Header";
+import { base_url } from "../constants";
+import AuthContext from "../contexts/authContext";
+import { goToLogin } from "../routing/Coordinator";
 
 const SignUp = () => {
+  const { states, requests, setters } = useContext(AuthContext);
+  const { handleSubmit, errors, register, formState } = useForm();
+  const toast = useToast();
+  const history = useHistory();
+
+  const createUser = async (user) => {
+    console.log("createUser data input", user);
+    try {
+      const response = await axios.post(`${base_url}/signup`, user);
+      toast({
+        title: `Seja bem-vindx ${user.name}!`,
+        description: `Email cadastrado: ${user.email}.`,
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+
+      setters.setUser(response.data.user);
+    } catch (err) {
+      if (err.response.data.message === "Email ou CPF já cadastrados") {
+        toast({
+          title: "Email ou CPF já cadastrados!",
+          description: (
+            <Button
+              onClick={() => goToLogin(history)}
+              variant="link"
+              size="lg"
+              color="neutralPalette.100"
+              margin="2"
+            >
+              Ir para tela de Login
+            </Button>
+          ),
+          status: "error",
+          duration: 30000,
+          isClosable: true,
+        });
+      }
+      // throw new Error(err.response.data.message);
+    }
+  };
+
+  const onSubmit = (data) => {
+    console.log("form data", data);
+
+    if (data.password !== data.confirmPassword) {
+      console.log("passwords don't match");
+    } else {
+      const userData = {
+        name: data.name,
+        email: data.email,
+        cpf: data.cpf,
+        password: data.password,
+      };
+
+      console.log(userData);
+      createUser(userData);
+    }
+  };
+
   return (
     <Flex as="main" w="100vw" h="100vh" direction="column" align="center">
       <Flex
@@ -48,43 +116,75 @@ const SignUp = () => {
           paddingBottom="6"
           paddingX="4"
         >
-          <Box as="form" h="100%" w="100%" paddingBottom="6">
+          <Box as="form" h="100%" w="100%" onSubmit={handleSubmit(onSubmit)}>
             <FormControl>
               <FormLabel fontSize="lg" marginTop="3">
                 Nome
+                {errors.name && (
+                  <Text as="span" color="red">
+                    {" "}
+                    *
+                  </Text>
+                )}
               </FormLabel>
               <Input
                 placeholder="Nome completo"
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
+                name="name"
+                type="text"
+                ref={register({ required: true })}
               />
             </FormControl>
             <FormControl>
               <FormLabel fontSize="lg" marginTop="3">
                 E-mail
+                {errors.email && (
+                  <Text as="span" color="red">
+                    {" "}
+                    *
+                  </Text>
+                )}
               </FormLabel>
               <Input
                 placeholder="E-mail"
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
+                type="email"
+                name="email"
+                ref={register({ required: true })}
               />
             </FormControl>
             <FormControl>
               <FormLabel fontSize="lg" marginTop="3">
                 CPF
+                {errors.cpf && (
+                  <Text as="span" color="red">
+                    {" "}
+                    *
+                  </Text>
+                )}
               </FormLabel>
               <Input
                 placeholder="000.000.000-00"
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
+                name="cpf"
+                ref={register({ required: true })}
               />
             </FormControl>
             <FormControl>
               <FormLabel fontSize="lg" marginTop="3">
                 Senha
+                {errors.password && (
+                  <Text as="span" color="red">
+                    {" "}
+                    *
+                  </Text>
+                )}
               </FormLabel>
               <Input
                 type="password"
@@ -92,11 +192,19 @@ const SignUp = () => {
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
+                name="password"
+                ref={register({ required: true, minLength: 6, maxLength: 16 })}
               />
             </FormControl>
             <FormControl>
               <FormLabel fontSize="lg" marginTop="3">
                 Confirmar senha
+                {errors.confirmPassword && (
+                  <Text as="span" color="red">
+                    {" "}
+                    *
+                  </Text>
+                )}
               </FormLabel>
               <Input
                 type="password"
@@ -104,12 +212,20 @@ const SignUp = () => {
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
+                name="confirmPassword"
+                ref={register({ required: true, minLength: 6, maxLength: 16 })}
               />
             </FormControl>
+            <Button
+              type="submit"
+              variant="solid"
+              fontSize="20px"
+              marginTop="6"
+              w="100%"
+            >
+              Cadastrar
+            </Button>
           </Box>
-          <Button type="submit" variant="solid" fontSize="20px">
-            Cadastrar
-          </Button>
         </Flex>
       </Flex>
     </Flex>

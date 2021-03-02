@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
-import RestaurantCard from "../../components/RestaurantCard";
+import RestaurantCard from "../components/RestaurantCard";
 
 const arrFood = [
   {
