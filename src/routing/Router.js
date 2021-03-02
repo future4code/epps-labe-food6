@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp";
 import Dashboard from "../pages/Dashboard";
 import AuthProvider from "../providers/authProvider";
 import RestaurantDetailsPage from "../pages/RestaurantDetailsPage";
+import SignAddress from "../pages/SignAddress";
 import LoginPage from "../pages/LoginPage";
 
 const Router = () => {
@@ -16,8 +17,11 @@ const Router = () => {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path={"/signup"}>
+          <Route exact path={"/signUp"}>
             <SignUp />
+          </Route>
+          <Route exact path={"/signAddress"}>
+            <SignAddress />
           </Route>
           <Route exact path="/login">
             <LoginPage />
