@@ -12,6 +12,8 @@ const RestaurantDetailsPage = () => {
       <RestaurantDetailsCard />
       <Category />
       <ProductCard />
+      <ProductCard />
+      <ProductCard />
     </Flex>
   );
 };

@@ -21,10 +21,9 @@ const RestaurantCard = ({
       border="1px lightgray solid"
       borderRadius="8px"
     >
-      <Box grow="1">
+      <Box w="100%">
         <Image
           src={logoUrl}
-          grow="1"
           alt={description}
           objectFit="contain"
           borderRadius="8px 8px 0 0"

@@ -7,6 +7,7 @@ const ProductCard = () => {
     <Flex
       as="article"
       mx="1em"
+      my="0.5em"
       border="1px solid"
       borderColor="neutralPalette.500"
       borderRadius="8px"
