@@ -27,17 +27,17 @@ const Router = () => {
           <Route exact path="/login">
             <LoginPage />
           </Route>
-          <Route exact path={"/feed/:restaurants"}>
+          <Route exact path={"/feed/:page"}>
             <Dashboard />
+          </Route>
+          <Route exact path={"/feed/cart/:userId"}>
+            <Cart />
           </Route>
           <Route exact path={"/feed/profile/:userId"}>
             <Profile />
           </Route>
-          <Route exact path={"/feed/cart"}>
-            <Cart />
-          </Route>
           <Route exact path={"/restaurantdetails"}>
-            <RestaurantDetailsPage />
+            <RestaurantDetails />
           </Route>
         </Switch>
       </BrowserRouter>
