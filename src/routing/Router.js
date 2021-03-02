@@ -1,11 +1,12 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "../pages/Home";
-import Login from "../pages/Login";
+// import Login from "../pages/LoginForm";
 import SignUp from "../pages/SignUp";
 import Dashboard from "../pages/Dashboard";
 import AuthProvider from "../providers/authProvider";
 import RestaurantDetailsPage from "../pages/RestaurantDetailsPage";
+import LoginPage from "../pages/LoginPage";
 
 const Router = () => {
   return (
@@ -19,7 +20,7 @@ const Router = () => {
             <SignUp />
           </Route>
           <Route exact path="/login">
-            <Login />
+            <LoginPage />
           </Route>
           <Route exact path={"/feed"}>
             <Dashboard />
