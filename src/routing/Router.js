@@ -1,11 +1,10 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "../pages/Home";
-// import Login from "../pages/LoginForm";
 import SignUp from "../pages/SignUp";
 import Dashboard from "../pages/Dashboard";
 import AuthProvider from "../providers/authProvider";
-import RestaurantDetailsPage from "../pages/RestaurantDetailsPage";
+import RestaurantDetails from "../pages/RestaurantDetails";
 import SignAddress from "../pages/SignAddress";
 import LoginPage from "../pages/LoginPage";
 import Profile from "../pages/Profile";

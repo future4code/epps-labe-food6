@@ -56,7 +56,7 @@ const arrFood = [
   },
 ];
 
-const DashboardPage = () => {
+const Dashboard = () => {
   const category = arrFood.map((type) => {
     return <Tab key={type.id}>{type.category}</Tab>;
   });
@@ -78,7 +78,17 @@ const DashboardPage = () => {
 
   return (
     <Flex as="main" mx="1em" h="100vh" direction="column" align="center">
+    <Flex
+      as="main"
+      mx="1em"
+      w="isFullWidth"
+      h="100vh"
+      direction="column"
+      align="center"
+    >
+      <Divider marginBottom="0.5em" />
       <Header>FutureEats</Header>
+      <Divider marginBottom="0.5em" />
       <InputGroup marginTop="2">
         <InputLeftElement
           pointerEvents="none"
@@ -94,4 +104,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default Dashboard;

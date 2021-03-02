@@ -8,7 +8,7 @@ import { useHistory, useParams } from "react-router-dom";
 const Header = (props) => {
   const history = useHistory();
   const params = useParams();
-
+  
   const pathUrl = params.restaurants;
 
   return (

@@ -52,7 +52,6 @@ const SignAddress = () => {
   const createAddress = async (address) => {
     console.log("address data", address);
     const token = localStorage.getItem("token");
-
     try {
       const response = await axios.put(`${base_url}/address`, address, {
         headers: {
@@ -66,6 +65,7 @@ const SignAddress = () => {
   };
 
   const onSubmit = (data) => {
+    console.log("form data", data);
     createAddress(data);
   };
 
