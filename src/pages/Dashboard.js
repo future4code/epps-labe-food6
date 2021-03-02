@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Flex,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Divider,
-} from "@chakra-ui/react";
+import { Flex, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
@@ -83,6 +77,7 @@ const Dashboard = () => {
   });
 
   return (
+    <Flex as="main" mx="1em" h="100vh" direction="column" align="center">
     <Flex
       as="main"
       mx="1em"
