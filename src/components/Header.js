@@ -8,7 +8,13 @@ import { useHistory } from "react-router-dom";
 const Header = (props) => {
   const history = useHistory();
   return (
-    <Flex as="header" w="100vw" align="center" justify="space-between">
+    <Flex
+      as="header"
+      w="100vw"
+      align="center"
+      justify="space-between"
+      borderBottom="1px lightgray solid"
+    >
       <IconButton
         icon={<ChevronLeftIcon />}
         w="10%"

@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Box,
   Flex,
   Text,
   Input,
@@ -8,8 +7,9 @@ import {
   InputGroup,
   InputLeftElement,
 } from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
+import RestaurantCard from "../components/RestaurantCard";
 
 const arrFood = [
   {
@@ -19,7 +19,8 @@ const arrFood = [
     shipping: 6,
     address: "Rua das Margaridas, 110 - Jardim das Flores",
     name: "Habibs",
-    logoUrl: "http://soter.ninja/futureFoods/logos/habibs.jpg",
+    logoUrl:
+      "https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Fhabibs.jpg?alt=media&token=a30ea547-3a3b-4e80-b58e-b8dc976697de",
     deliveryTime: 60,
     category: "Árabe",
   },
@@ -27,7 +28,8 @@ const arrFood = [
     id: "10",
     address: "Travessa Reginaldo Pereira, 130 - Ibitinga",
     name: "Tadashii",
-    logoUrl: "http://soter.ninja/futureFoods/logos/tadashii.png",
+    logoUrl:
+      "https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Ftadashii.png?alt=media&token=0e4b9b8c-3b6e-4a78-bd49-d3576657a342",
     deliveryTime: 50,
     category: "Asiática",
     description:
@@ -41,7 +43,8 @@ const arrFood = [
     shipping: 19,
     address: "Avenida dos Papagaios, 1350 - Sta. Efigênia",
     name: "McDonalds",
-    logoUrl: "http://soter.ninja/futureFoods/logos/mcdonalds.png",
+    logoUrl:
+      "https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Fmcdonalds.png?alt=media&token=87a0fc52-3b8d-4475-b3e4-6ff730356121",
     deliveryTime: 15,
     category: "Hamburguer",
   },
@@ -54,7 +57,8 @@ const arrFood = [
     shipping: 2,
     address: "Rua Barão do Rio Branco, 98 - Centro",
     name: "Cantina Mamma Perrotta",
-    logoUrl: "http://soter.ninja/futureFoods/logos/cantinamammaperrotta.jpg",
+    logoUrl:
+      "https://firebasestorage.googleapis.com/v0/b/missao-newton.appspot.com/o/futureFoodsRestaurants%2Fcantinamammaperrotta.jpg?alt=media&token=3a4e76b6-3d07-414b-8672-e624f5a10a76",
   },
 ];
 
@@ -65,15 +69,29 @@ const DashboardPage = () => {
 
   const restaurantsList = arrFood.map((restaurant) => {
     return (
-      <TabPanel key={restaurant.id}>
-        <p>{restaurant.name}</p>
-      </TabPanel>
+      <RestaurantCard
+        key={restaurant.id}
+        deliveryTime={restaurant.deliveryTime}
+        category={restaurant.category}
+        description
+        shipping={restaurant.shipping}
+        address={restaurant.adress}
+        name={restaurant.name}
+        logoUrl={restaurant.logoUrl}
+      />
     );
   });
 
   return (
-    <Flex as="main" w="100vw" h="100vh" direction="column" align="center">
-      <Text>FutureEats</Text>
+    <Flex
+      as="main"
+      isFullWidth
+      mx="1em"
+      h="100vh"
+      direction="column"
+      align="center"
+    >
+      <Text p="12px 50px">FutureEats</Text>
       <Divider />
       <InputGroup>
         <InputLeftElement
