@@ -14,6 +14,18 @@ export const goToSignAddress = (history) => {
   history.push("/signAddress");
 };
 
+export const goToFeed = (history) => {
+  history.push("/feed/restaurants");
+};
+
+export const goToCart = (history, id) => {
+  history.push(`/feed/cart/${id}`);
+};
+
+export const goToProfile = (history, id) => {
+  history.push(`/feed/profile/${id}`);
+};
+
 //de olho pra consertar essa rota aqui, é só pra ver a renderização
 export const goToRestaurantDetails = (history) => {
   history.push("/restaurantdetails");

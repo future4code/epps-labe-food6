@@ -1,9 +1,16 @@
 import React from "react";
-import { Flex, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import {
+  Flex,
+  Input,
+  InputGroup,
+  Divider,
+  InputLeftElement,
+} from "@chakra-ui/react";
 import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import RestaurantCard from "../components/RestaurantCard";
+import Footer from "../components/Footer";
 
 const arrFood = [
   {
@@ -56,12 +63,38 @@ const arrFood = [
   },
 ];
 
-const DashboardPage = () => {
+const Dashboard = () => {
   const category = arrFood.map((type) => {
     return <Tab key={type.id}>{type.category}</Tab>;
   });
 
   const restaurantsList = arrFood.map((restaurant) => {
+    // switch (restaurant.category) {
+    //   case "Italiana":
+    //     if (restaurant.category === "Italiana") {
+    //       console.log("italiana");
+    //       return (
+    //         <RestaurantCard
+    //           key={restaurant.id}
+    //           deliveryTime={restaurant.deliveryTime}
+    //           category={restaurant.category}
+    //           description={restaurant.description}
+    //           shipping={restaurant.shipping}
+    //           address={restaurant.adress}
+    //           name={restaurant.name}
+    //           logoUrl={restaurant.logoUrl}
+    //         />
+    //       );
+    //     }
+    //     break;
+    //   default:
+    //     console.log("todas");
+    // }
+
+    // .filter => restaurante por tipo ===== array restaurantes
+
+    // .filter => restaurante por nome ===== array restaurantes com nome >por tipo ou não<
+
     return (
       <RestaurantCard
         key={restaurant.id}
@@ -77,21 +110,32 @@ const DashboardPage = () => {
   });
 
   return (
-    <Flex as="main" mx="1em" h="100vh" direction="column" align="center">
-      <Header>FutureEats</Header>
-      <InputGroup marginTop="2">
-        <InputLeftElement
-          pointerEvents="none"
-          children={<Search2Icon color="gray.300" />}
-        />
-        <Input placeholder="Restaurante" />
-      </InputGroup>
-      <Tabs>
-        <TabList>{category}</TabList>
-        <TabPanels>{restaurantsList}</TabPanels>
-      </Tabs>
+    <Flex as="main" h="100vh" w="100vw" direction="column" align="center">
+      <Flex
+        as="section"
+        w="100%"
+        direction="column"
+        align="center"
+        paddingBottom="80px"
+      >
+        <Divider marginBottom="0.5em" />
+        <Header>FutureEats</Header>
+        <Divider marginBottom="0.5em" />
+        <InputGroup marginTop="2">
+          <InputLeftElement
+            pointerEvents="none"
+            children={<Search2Icon color="gray.300" />}
+          />
+          <Input placeholder="Restaurante" />
+        </InputGroup>
+        <Tabs>
+          <TabList>{category}</TabList>
+          <TabPanels>{restaurantsList}</TabPanels>
+        </Tabs>
+      </Flex>
+      <Footer />
     </Flex>
   );
 };
 
-export default DashboardPage;
+export default Dashboard;

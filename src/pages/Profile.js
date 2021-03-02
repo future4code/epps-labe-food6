@@ -7,8 +7,8 @@ const Profile = () => {
   return (
     <Flex as="main" w="100vw" h="100vh" direction="column" align="center">
       <Header>Profile</Header>
-      <Flex as="section" h="90vh">
-        teste
+      <Flex as="section" h="100%" w="100%">
+        profile page
       </Flex>
       <Footer />
     </Flex>

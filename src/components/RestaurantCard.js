@@ -13,20 +13,20 @@ const RestaurantCard = ({
 }) => {
   return (
     <Flex
+      as="article"
       flexDirection="column"
       my="0.5em"
       mx="1em"
       p="0"
-      borderRadius="8px"
       border="1px lightgray solid"
+      borderRadius="8px"
     >
-      <Box paddingTop="0.5em">
+      <Box w="100%">
         <Image
           src={logoUrl}
-          w="328px"
-          h="120px"
           alt={description}
           objectFit="contain"
+          borderRadius="8px 8px 0 0"
         />
       </Box>
       <Flex color="neutralPalette.500" flexDirection="column" padding="1em">
