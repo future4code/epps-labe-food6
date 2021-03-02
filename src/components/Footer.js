@@ -28,7 +28,7 @@ const Footer = () => {
           h="100%"
           w="100%"
           size="lg"
-          fontSize="26px"
+          fontSize="36px"
           variant="ghost"
           onClick={() => goToFeed(history)}
         />
@@ -37,7 +37,7 @@ const Footer = () => {
           h="100%"
           w="100%"
           size="lg"
-          fontSize="26px"
+          fontSize="36px"
           variant="ghost"
           onClick={() => goToCart(history, id)}
         />
@@ -46,7 +46,7 @@ const Footer = () => {
           h="100%"
           w="100%"
           size="lg"
-          fontSize="26px"
+          fontSize="36px"
           variant="ghost"
           onClick={() => goToProfile(history, id)}
         />
