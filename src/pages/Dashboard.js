@@ -11,6 +11,8 @@ import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import RestaurantCard from "../components/RestaurantCard";
 
+import { useInput } from "../hooks/useInput";
+
 const arrFood = [
   {
     id: "1",
@@ -63,7 +65,7 @@ const arrFood = [
 ];
 
 const DashboardPage = () => {
-  
+  const [search, handleSearch] = useInput()
 
   const category = arrFood.map((type) => {
     return <Tab key={type.id}>{type.category}</Tab>;
@@ -100,6 +102,8 @@ const DashboardPage = () => {
           children={<Search2Icon color="gray.300" />}
         />
         <Input
+          value={search}
+          onChange={handleSearch}
           placeholder="Restaurante"
         />
       </InputGroup>
