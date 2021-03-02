@@ -12,6 +12,7 @@ const AuthProvider = (props) => {
   const requests = {};
   const setters = { setUser, setToken };
   const data = { states, requests, setters };
+
   return (
     <AuthContext.Provider value={{ data }}>
       {props.children}
