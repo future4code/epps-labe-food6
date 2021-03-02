@@ -3,7 +3,6 @@ import {
   Button,
   Flex,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   Input,
   Text,
@@ -19,8 +18,8 @@ import AuthContext from "../contexts/authContext";
 import { goToLogin, goToSignAddress } from "../routing/Coordinator";
 
 const SignUp = () => {
-  const { states, requests, setters } = useContext(AuthContext);
-  const { handleSubmit, errors, register, formState } = useForm();
+  const { setters } = useContext(AuthContext);
+  const { handleSubmit, errors, register } = useForm();
   const toast = useToast();
   const history = useHistory();
 
@@ -36,6 +35,7 @@ const SignUp = () => {
         isClosable: true,
       });
 
+      setters.setToken(response.data.token);
       setters.setUser(response.data.user);
     } catch (err) {
       if (err.response.data.message === "Email ou CPF já cadastrados") {

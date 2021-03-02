@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  Flex,
-  Text,
-  Input,
-  InputGroup,
-  InputLeftElement,
-} from "@chakra-ui/react";
-import Header from '../components/Header'
+import { Flex, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import RestaurantCard from "../components/RestaurantCard";
@@ -63,8 +57,6 @@ const arrFood = [
 ];
 
 const DashboardPage = () => {
-  
-
   const category = arrFood.map((type) => {
     return <Tab key={type.id}>{type.category}</Tab>;
   });
@@ -75,7 +67,7 @@ const DashboardPage = () => {
         key={restaurant.id}
         deliveryTime={restaurant.deliveryTime}
         category={restaurant.category}
-        description
+        description={restaurant.description}
         shipping={restaurant.shipping}
         address={restaurant.adress}
         name={restaurant.name}
@@ -85,23 +77,14 @@ const DashboardPage = () => {
   });
 
   return (
-    <Flex
-      as="main"
-      isFullWidth
-      mx="1em"
-      h="100vh"
-      direction="column"
-      align="center"
-    >
+    <Flex as="main" mx="1em" h="100vh" direction="column" align="center">
       <Header>FutureEats</Header>
       <InputGroup marginTop="2">
         <InputLeftElement
           pointerEvents="none"
           children={<Search2Icon color="gray.300" />}
         />
-        <Input
-          placeholder="Restaurante"
-        />
+        <Input placeholder="Restaurante" />
       </InputGroup>
       <Tabs>
         <TabList>{category}</TabList>

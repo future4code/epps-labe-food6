@@ -3,26 +3,25 @@ import {
   Button,
   Flex,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   Input,
   Text,
-  useToast,
+  // useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useContext } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import Header from "../components/Header";
 import { base_url } from "../constants";
-import AuthContext from "../contexts/authContext";
-import { goToLogin, goToSignAddress } from "../routing/Coordinator";
+// import AuthContext from "../contexts/authContext";
+// import { goToLogin, goToSignAddress } from "../routing/Coordinator";
 
 const SignAddress = () => {
-  const { states, requests, setters } = useContext(AuthContext);
-  const { handleSubmit, errors, register, formState } = useForm();
-  const toast = useToast();
-  const history = useHistory();
+  // const { states, requests, setters } = useContext(AuthContext);
+  const { handleSubmit, errors, register } = useForm();
+  // const toast = useToast();
+  // const history = useHistory();
 
   // toast({
   //   title: `Seja bem-vindx ${user.name}!`,
@@ -53,19 +52,20 @@ const SignAddress = () => {
   const createAddress = async (address) => {
     console.log("address data", address);
     const token = localStorage.getItem("token");
+
     try {
       const response = await axios.put(`${base_url}/address`, address, {
         headers: {
           Authorization: token,
         },
       });
+      console.log(response.data);
     } catch (err) {
       throw new Error(err.response.data.message);
     }
   };
 
   const onSubmit = (data) => {
-    console.log("form data", data);
     createAddress(data);
   };
 

@@ -10,49 +10,50 @@ import {
   InputRightElement,
   Text,
 } from "@chakra-ui/react";
-import Header from "../components/Header";
 import { useForm } from "react-hook-form";
 import { goHome, goToSignUp } from "../routing/Coordinator";
 import { useHistory } from "react-router-dom";
-import { login } from "../services/user";
 import axios from "axios";
 
 const LoginForm = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-  const { handleSubmit, register } = useForm()
-  const history = useHistory()
+  const { handleSubmit, register } = useForm();
+  const history = useHistory();
 
   useEffect(() => {
-    const token = window.localStorage.getItem("token")
+    const token = window.localStorage.getItem("token");
 
     if (token) {
-      history.push("/login")
+      history.push("/login");
     }
-  }, [history])
-
+  }, [history]);
 
   const login = (body, history) => {
-    axios.post(`https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/login/`, body)
-    .then((response) => {
-      localStorage.setItem("token", response.data.token)
+    axios
+      .post(
+        `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/login/`,
+        body
+      )
+      .then((response) => {
+        localStorage.setItem("token", response.data.token);
 
-      //Colocar para ir pro feed 
-      goHome(history) 
-    })
-    .catch((error) => {
-      console.log(error.response.data.message)
-    })
-  }
+        //Colocar para ir pro feed
+        goHome(history);
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  };
 
-  const onSubmitForm = (data) => {  
-    login(data, history)
-    console.log(data)
-  }
+  const onSubmitForm = (data) => {
+    login(data, history);
+    console.log(data);
+  };
 
   return (
-      <Flex as="main" w="100vw" h="100vh" direction="column" align="center">
-        <Box as="form" onSubmit={handleSubmit(onSubmitForm)}>
+    <Flex as="main" w="100vw" h="100vh" direction="column" align="center">
+      <Box as="form" onSubmit={handleSubmit(onSubmitForm)}>
         <Box as="span" padding="4">
           <Text
             fontSize="48px"
@@ -82,7 +83,6 @@ const LoginForm = () => {
             type="email"
             name="email"
             ref={register({ required: true })}
-           
           />
         </FormControl>
         <FormControl>
@@ -96,10 +96,6 @@ const LoginForm = () => {
               name="password"
               ref={register({ required: true })}
               type={show ? "text" : "password"}
-      
-             
-
-  
             />
             <InputRightElement width="4.5rem">
               <Button
@@ -110,8 +106,7 @@ const LoginForm = () => {
                 margin="normal"
                 h="1.75rem"
                 size="sm"
-                // onClick=handleClick
-                required
+                onClick={handleClick}
               >
                 {show ? "Esconder" : "Mostrar"}
               </Button>
@@ -127,19 +122,19 @@ const LoginForm = () => {
         >
           Entrar
         </Button>
-        </Box>
-        <Button
-          onClick={() => goToSignUp(history)}
-          type={"submit"}
-          fullWidth
-          variant={"text"}
-          color={"primary"}
-          margin={"normal"}
-        >
-          Cadastre-se
-        </Button>
-      </Flex>
-  )
-}
+      </Box>
+      <Button
+        onClick={() => goToSignUp(history)}
+        type={"submit"}
+        fullWidth
+        variant={"text"}
+        color={"primary"}
+        margin={"normal"}
+      >
+        Cadastre-se
+      </Button>
+    </Flex>
+  );
+};
 
-export default LoginForm
+export default LoginForm;
