@@ -6,7 +6,6 @@ import {
   Divider,
   InputGroup,
   InputLeftElement,
-  Box,
 } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
@@ -84,18 +83,16 @@ const Dashboard = () => {
   });
 
   return (
-    <Flex as="main" w="100%" h="100vh" direction="column" align="center">
+    <Flex as="main" w="100vw" h="100vh" direction="column" align="center">
       <Text p="1em">FutureEats</Text>
       <Divider marginBottom="0.5em" />
-      <Box>
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            children={<Search2Icon color="gray.300" />}
-          />
-          <Input placeholder="Restaurante" />
-        </InputGroup>
-      </Box>
+      <InputGroup w="100vw">
+        <InputLeftElement
+          pointerEvents="none"
+          children={<Search2Icon color="gray.300" />}
+        />
+        <Input placeholder="Restaurante" />
+      </InputGroup>
       <Tabs>
         <TabList>{category}</TabList>
         <TabPanels>{restaurantsList}</TabPanels>

@@ -3,10 +3,12 @@ import React from "react";
 
 const Category = () => {
   return (
-    <Box borderBottom="1px black solid" py="1em 0.5em">
-      <Text>Categoría</Text>
+    <Box py="0.5em">
+      <Text mx="1em" py="0.5em" borderBottom="1px black solid">
+        Categoría
+      </Text>
     </Box>
   );
 };
-
+//pensando como vai ser a lógica pra renderizar isso aqui de acordo com o que vem da API
 export default Category;
