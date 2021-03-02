@@ -86,7 +86,7 @@ const Dashboard = () => {
     <Flex
       as="main"
       mx="1em"
-      w="100vw"
+      w="isFullWidth"
       h="100vh"
       direction="column"
       align="center"
