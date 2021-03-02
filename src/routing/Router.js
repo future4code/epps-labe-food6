@@ -3,6 +3,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import DashboardPage from "../pages/Dashboard/DashboardPage";
+import RestaurantDetailsPage from "../pages/RestaurantDetailsPage";
 
 const Router = () => {
   return (
@@ -19,6 +21,9 @@ const Router = () => {
         </Route>
         <Route exact path={"/feed"}>
           <DashboardPage />
+        </Route>
+        <Route exact path={"/restaurantdetails"}>
+          <RestaurantDetailsPage />
         </Route>
       </Switch>
     </BrowserRouter>
