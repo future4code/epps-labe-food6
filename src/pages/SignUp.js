@@ -16,7 +16,7 @@ import { useHistory } from "react-router-dom";
 import Header from "../components/Header";
 import { base_url } from "../constants";
 import AuthContext from "../contexts/authContext";
-import { goToLogin } from "../routing/Coordinator";
+import { goToLogin, goToSignAddress } from "../routing/Coordinator";
 
 const SignUp = () => {
   const { states, requests, setters } = useContext(AuthContext);
@@ -59,6 +59,10 @@ const SignUp = () => {
       }
       // throw new Error(err.response.data.message);
     }
+  };
+
+  const botao = () => {
+    goToSignAddress(history);
   };
 
   const onSubmit = (data) => {
@@ -216,12 +220,22 @@ const SignUp = () => {
                 ref={register({ required: true, minLength: 6, maxLength: 16 })}
               />
             </FormControl>
+            {/* <Button
+              type="submit"
+              variant="solid"
+              fontSize="20px"
+              marginTop="6"
+              w="100%"
+            >
+              Cadastrar
+            </Button> */}
             <Button
               type="submit"
               variant="solid"
               fontSize="20px"
               marginTop="6"
               w="100%"
+              onClick={() => botao()}
             >
               Cadastrar
             </Button>
