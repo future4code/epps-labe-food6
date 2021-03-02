@@ -9,7 +9,11 @@ const Header = (props) => {
   const history = useHistory();
   const params = useParams();
 
-  const pathUrl = params.restaurants;
+  const pathParams = params.page;
+  let pathUrl = pathParams;
+  if (pathParams.includes("restaurants" || "profile/:userId")) {
+    pathUrl = pathParams;
+  }
 
   return (
     <Flex
@@ -20,7 +24,7 @@ const Header = (props) => {
       borderBottom="1px lightgray solid"
       minH="50px"
     >
-      {pathUrl && pathUrl.includes("restaurants") ? (
+      {pathUrl && pathUrl ? (
         <Text w="100%" textAlign="center" fontSize="22px">
           {props.children}
         </Text>
