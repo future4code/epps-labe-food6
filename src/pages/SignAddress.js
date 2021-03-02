@@ -18,69 +18,55 @@ import { base_url } from "../constants";
 import AuthContext from "../contexts/authContext";
 import { goToLogin, goToSignAddress } from "../routing/Coordinator";
 
-const SignUp = () => {
+const SignAddress = () => {
   const { states, requests, setters } = useContext(AuthContext);
   const { handleSubmit, errors, register, formState } = useForm();
   const toast = useToast();
   const history = useHistory();
 
-  const createUser = async (user) => {
-    console.log("createUser data input", user);
+  // toast({
+  //   title: `Seja bem-vindx ${user.name}!`,
+  //   description: `Email cadastrado: ${user.email}.`,
+  //   status: "success",
+  //   duration: 5000,
+  //   isClosable: true,
+  // });
+
+  // toast({
+  //   title: "Email ou CPF já cadastrados!",
+  //   description: (
+  //     <Button
+  //       onClick={() => goToLogin(history)}
+  //       variant="link"
+  //       size="lg"
+  //       color="neutralPalette.100"
+  //       margin="2"
+  //     >
+  //       Ir para tela de Login
+  //     </Button>
+  //   ),
+  //   status: "error",
+  //   duration: 30000,
+  //   isClosable: true,
+  // });
+
+  const createAddress = async (address) => {
+    console.log("address data", address);
+    const token = localStorage.getItem("token");
     try {
-      const response = await axios.post(`${base_url}/signup`, user);
-      toast({
-        title: `Seja bem-vindx ${user.name}!`,
-        description: `Email cadastrado: ${user.email}.`,
-        status: "success",
-        duration: 5000,
-        isClosable: true,
+      const response = await axios.put(`${base_url}/address`, address, {
+        headers: {
+          Authorization: token,
+        },
       });
-
-      setters.setUser(response.data.user);
     } catch (err) {
-      if (err.response.data.message === "Email ou CPF já cadastrados") {
-        toast({
-          title: "Email ou CPF já cadastrados!",
-          description: (
-            <Button
-              onClick={() => goToLogin(history)}
-              variant="link"
-              size="lg"
-              color="neutralPalette.100"
-              margin="2"
-            >
-              Ir para tela de Login
-            </Button>
-          ),
-          status: "error",
-          duration: 30000,
-          isClosable: true,
-        });
-      }
-      // throw new Error(err.response.data.message);
+      throw new Error(err.response.data.message);
     }
-  };
-
-  const botao = () => {
-    goToSignAddress(history);
   };
 
   const onSubmit = (data) => {
     console.log("form data", data);
-
-    if (data.password !== data.confirmPassword) {
-      console.log("passwords don't match");
-    } else {
-      const userData = {
-        name: data.name,
-        email: data.email,
-        cpf: data.cpf,
-        password: data.password,
-      };
-
-      console.log(userData);
-      createUser(userData);
-    }
+    createAddress(data);
   };
 
   return (
@@ -93,26 +79,7 @@ const SignUp = () => {
         align="center"
         justify="space-between"
       >
-        <Header>Cadastrar</Header>
-        <Box as="span" padding="4">
-          <Text
-            fontSize="48px"
-            fontWeight="400"
-            lineHeight="0.9"
-            alignSelf="flex-end"
-          >
-            Future
-          </Text>
-          <Text
-            fontSize="48px"
-            fontWeight="700"
-            lineHeight="0.9"
-            alignSelf="flex-end"
-            color="greenPalette.400"
-          >
-            Eats
-          </Text>
-        </Box>
+        <Header>Cadastrar endereço</Header>
         <Flex
           as="section"
           direction="column"
@@ -123,8 +90,8 @@ const SignUp = () => {
           <Box as="form" h="100%" w="100%" onSubmit={handleSubmit(onSubmit)}>
             <FormControl>
               <FormLabel fontSize="lg" marginTop="3">
-                Nome
-                {errors.name && (
+                Logradouro
+                {errors.street && (
                   <Text as="span" color="red">
                     {" "}
                     *
@@ -132,7 +99,7 @@ const SignUp = () => {
                 )}
               </FormLabel>
               <Input
-                placeholder="Nome completo"
+                placeholder="Rua/Av."
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
@@ -143,8 +110,8 @@ const SignUp = () => {
             </FormControl>
             <FormControl>
               <FormLabel fontSize="lg" marginTop="3">
-                E-mail
-                {errors.email && (
+                Número
+                {errors.number && (
                   <Text as="span" color="red">
                     {" "}
                     *
@@ -152,19 +119,19 @@ const SignUp = () => {
                 )}
               </FormLabel>
               <Input
-                placeholder="E-mail"
+                placeholder="220"
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
-                type="email"
-                name="email"
+                type="text"
+                name="number"
                 ref={register({ required: true })}
               />
             </FormControl>
             <FormControl>
               <FormLabel fontSize="lg" marginTop="3">
-                CPF
-                {errors.cpf && (
+                Complemento
+                {errors.complement && (
                   <Text as="span" color="red">
                     {" "}
                     *
@@ -172,17 +139,17 @@ const SignUp = () => {
                 )}
               </FormLabel>
               <Input
-                placeholder="000.000.000-00"
+                placeholder="Apto 420 bloco 02"
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
-                name="cpf"
+                name="complement"
                 ref={register({ required: true })}
               />
             </FormControl>
             <FormControl>
               <FormLabel fontSize="lg" marginTop="3">
-                Senha
+                Bairro
                 {errors.password && (
                   <Text as="span" color="red">
                     {" "}
@@ -191,19 +158,19 @@ const SignUp = () => {
                 )}
               </FormLabel>
               <Input
-                type="password"
-                placeholder="Senha"
+                type="text"
+                placeholder="Bairro"
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
-                name="password"
-                ref={register({ required: true, minLength: 6, maxLength: 16 })}
+                name="neighbourhood"
+                ref={register({ required: true })}
               />
             </FormControl>
             <FormControl>
               <FormLabel fontSize="lg" marginTop="3">
-                Confirmar senha
-                {errors.confirmPassword && (
+                Cidade
+                {errors.city && (
                   <Text as="span" color="red">
                     {" "}
                     *
@@ -211,31 +178,41 @@ const SignUp = () => {
                 )}
               </FormLabel>
               <Input
-                type="password"
-                placeholder="Confirmar senha"
+                type="text"
+                placeholder="Cidade"
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
-                name="confirmPassword"
-                ref={register({ required: true, minLength: 6, maxLength: 16 })}
+                name="city"
+                ref={register({ required: true })}
               />
             </FormControl>
-            {/* <Button
-              type="submit"
-              variant="solid"
-              fontSize="20px"
-              marginTop="6"
-              w="100%"
-            >
-              Cadastrar
-            </Button> */}
+            <FormControl>
+              <FormLabel fontSize="lg" marginTop="3">
+                Estado
+                {errors.state && (
+                  <Text as="span" color="red">
+                    {" "}
+                    *
+                  </Text>
+                )}
+              </FormLabel>
+              <Input
+                type="text"
+                placeholder="Estado"
+                color="neutralPalette.900"
+                borderColor="neutralPalette.500"
+                size="lg"
+                name="state"
+                ref={register({ required: true })}
+              />
+            </FormControl>
             <Button
               type="submit"
               variant="solid"
               fontSize="20px"
               marginTop="6"
               w="100%"
-              onClick={() => botao()}
             >
               Cadastrar
             </Button>
@@ -246,4 +223,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignAddress;

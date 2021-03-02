@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import RestaurantDetailsCard from "../components/RestaurantDetailsCard";
 
-const RestaurantDetailsPage = () => {
+const RestaurantDetails = () => {
   return (
     <Flex flexDirection="column">
       <Header>Restaurante</Header>
@@ -18,4 +18,4 @@ const RestaurantDetailsPage = () => {
   );
 };
 
-export default RestaurantDetailsPage;
+export default RestaurantDetails;

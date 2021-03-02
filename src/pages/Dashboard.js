@@ -1,12 +1,12 @@
 import React from "react";
 import {
   Flex,
-  Text,
   Input,
-  Divider,
   InputGroup,
   InputLeftElement,
+  Divider,
 } from "@chakra-ui/react";
+import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import RestaurantCard from "../components/RestaurantCard";
@@ -83,10 +83,17 @@ const Dashboard = () => {
   });
 
   return (
-    <Flex as="main" w="100vw" h="100vh" direction="column" align="center">
-      <Text p="1em">FutureEats</Text>
+    <Flex
+      as="main"
+      isFullWidth
+      mx="1em"
+      h="100vh"
+      direction="column"
+      align="center"
+    >
       <Divider marginBottom="0.5em" />
-      <InputGroup w="100vw">
+      <Header>FutureEats</Header>
+      <InputGroup marginTop="2">
         <InputLeftElement
           pointerEvents="none"
           children={<Search2Icon color="gray.300" />}
