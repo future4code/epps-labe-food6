@@ -8,6 +8,8 @@ import AuthProvider from "../providers/authProvider";
 import RestaurantDetailsPage from "../pages/RestaurantDetailsPage";
 import SignAddress from "../pages/SignAddress";
 import LoginPage from "../pages/LoginPage";
+import Profile from "../pages/Profile";
+import Cart from "../pages/Cart";
 
 const Router = () => {
   return (
@@ -26,8 +28,14 @@ const Router = () => {
           <Route exact path="/login">
             <LoginPage />
           </Route>
-          <Route exact path={"/:feed"}>
+          <Route exact path={"/feed/:restaurants"}>
             <Dashboard />
+          </Route>
+          <Route exact path={"/feed/profile/:userId"}>
+            <Profile />
+          </Route>
+          <Route exact path={"/feed/cart"}>
+            <Cart />
           </Route>
           <Route exact path={"/restaurantdetails"}>
             <RestaurantDetailsPage />
