@@ -7,10 +7,10 @@ import { useHistory, useParams } from "react-router-dom";
 
 const Header = (props) => {
   const history = useHistory();
-  const params = useParams()
+  const params = useParams();
 
-  const feedUrl = params.feed
-  // console.log(feedUrl)
+  const feedUrl = params.feed;
+  //console.log(feedUrl);
 
   return (
     <Flex
@@ -20,10 +20,12 @@ const Header = (props) => {
       justify="space-between"
       borderBottom="1px lightgray solid"
     >
-      {feedUrl.includes("feed") ?
+      {feedUrl.includes("feed") ? (
         <Text w="100%" textAlign="center" fontSize="22px">
           {props.children}
-        </Text> : <>
+        </Text>
+      ) : (
+        <>
           <IconButton
             icon={<ChevronLeftIcon />}
             w="10%"
@@ -33,12 +35,12 @@ const Header = (props) => {
             onClick={() => goHome(history)}
           >
             voltar
-        </IconButton>
+          </IconButton>
           <Text w="90%" textAlign="center" fontSize="22px">
             {props.children}
           </Text>
         </>
-      }
+      )}
     </Flex>
   );
 };

@@ -5,7 +5,7 @@ import Home from "../pages/Home";
 import SignUp from "../pages/SignUp";
 import Dashboard from "../pages/Dashboard";
 import AuthProvider from "../providers/authProvider";
-import RestaurantDetailsPage from "../pages/RestaurantDetailsPage";
+import RestaurantDetails from "../pages/RestaurantDetails";
 import SignAddress from "../pages/SignAddress";
 import LoginPage from "../pages/LoginPage";
 
@@ -26,11 +26,11 @@ const Router = () => {
           <Route exact path="/login">
             <LoginPage />
           </Route>
+          <Route exact path={"/restaurantdetails"}>
+            <RestaurantDetails />
+          </Route>
           <Route exact path={"/:feed"}>
             <Dashboard />
-          </Route>
-          <Route exact path={"/restaurantdetails"}>
-            <RestaurantDetailsPage />
           </Route>
         </Switch>
       </BrowserRouter>
