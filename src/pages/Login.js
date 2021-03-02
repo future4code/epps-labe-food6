@@ -14,12 +14,19 @@ const Login = () => {
 
   return (
     <div>
-      <FormControl id="first-name" isRequired>
+      <FormControl isRequired>
         <FormLabel>E-mail</FormLabel>
-        <Input placeholder="Digite seu e-mail" size="md" />
+        <Input
+          name="email"
+          id="email"
+          placeholder="Digite seu e-mail"
+          size="md"
+        />
         <FormLabel>Senha</FormLabel>
         <InputGroup size="md">
           <Input
+            name="password"
+            id="password"
             pr="4.5rem"
             type={show ? "text" : "password"}
             placeholder="Digite sua senha"
