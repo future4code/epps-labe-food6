@@ -93,6 +93,7 @@ const Dashboard = () => {
     >
       <Divider marginBottom="0.5em" />
       <Header>FutureEats</Header>
+      <Divider marginBottom="0.5em" />
       <InputGroup marginTop="2">
         <InputLeftElement
           pointerEvents="none"
