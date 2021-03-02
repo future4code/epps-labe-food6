@@ -5,6 +5,8 @@ import {
   InputGroup,
   Divider,
   InputLeftElement,
+  Box,
+  Text,
 } from "@chakra-ui/react";
 import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
@@ -118,7 +120,6 @@ const Dashboard = () => {
         align="center"
         paddingBottom="80px"
       >
-        <Divider marginBottom="0.5em" />
         <Header>FutureEats</Header>
         <Divider marginBottom="0.5em" />
         <InputGroup marginTop="2">
