@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -12,8 +12,10 @@ import {
 } from "@chakra-ui/react";
 import Header from "../components/Header";
 import { useForm } from "react-hook-form";
-import { goToSignUp } from "../routing/Coordinator";
+import { goHome, goToSignUp } from "../routing/Coordinator";
 import { useHistory } from "react-router-dom";
+import { login } from "../services/user";
+import axios from "axios";
 
 const LoginForm = () => {
   const [show, setShow] = useState(false);
@@ -21,12 +23,36 @@ const LoginForm = () => {
   const { handleSubmit, register } = useForm()
   const history = useHistory()
 
-  const onSubmit = (data) => {
+  useEffect(() => {
+    const token = window.localStorage.getItem("token")
+
+    if (token) {
+      history.push("/login")
+    }
+  }, [history])
+
+
+  const login = (body, history) => {
+    axios.post(`https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/login/`, body)
+    .then((response) => {
+      localStorage.setItem("token", response.data.token)
+
+      //Colocar para ir pro feed 
+      goHome(history) 
+    })
+    .catch((error) => {
+      console.log(error.response.data.message)
+    })
+  }
+
+  const onSubmitForm = (data) => {  
+    login(data, history)
     console.log(data)
   }
+
   return (
       <Flex as="main" w="100vw" h="100vh" direction="column" align="center">
-        <Box as="form" onSubmit={handleSubmit(onSubmit)}>
+        <Box as="form" onSubmit={handleSubmit(onSubmitForm)}>
         <Box as="span" padding="4">
           <Text
             fontSize="48px"
@@ -70,6 +96,9 @@ const LoginForm = () => {
               name="password"
               ref={register({ required: true })}
               type={show ? "text" : "password"}
+      
+             
+
   
             />
             <InputRightElement width="4.5rem">
