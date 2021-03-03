@@ -1,12 +1,10 @@
 import React from "react";
 import {
-
   Divider,
   Flex,
   Input,
   InputGroup,
   InputLeftElement,
-
 } from "@chakra-ui/react";
 import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";

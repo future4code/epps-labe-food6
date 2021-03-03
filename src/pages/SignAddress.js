@@ -10,16 +10,20 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
+// , { useContext, useEffect }
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
 import Header from "../components/Header";
 import { base_url } from "../constants";
 // import AuthContext from "../contexts/authContext";
+import { goToFeed } from "../routing/Coordinator";
 // import { goToLogin, goToSignAddress } from "../routing/Coordinator";
 
 const SignAddress = () => {
   // const { states, requests, setters } = useContext(AuthContext);
   const { handleSubmit, errors, register } = useForm();
+  const history = useHistory();
   // const toast = useToast();
   // const history = useHistory();
 
@@ -51,14 +55,16 @@ const SignAddress = () => {
 
   const createAddress = async (address) => {
     console.log("address data", address);
-    const token = localStorage.getItem("token");
     try {
+      const token = localStorage.getItem("token");
       const response = await axios.put(`${base_url}/address`, address, {
         headers: {
-          Authorization: token,
+          auth: token,
         },
       });
       console.log(response.data);
+      // setters.setToken(response.data.token);
+      goToFeed(history);
     } catch (err) {
       throw new Error(err.response.data.message);
     }
@@ -103,7 +109,7 @@ const SignAddress = () => {
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
-                name="name"
+                name="street"
                 type="text"
                 ref={register({ required: true })}
               />
@@ -131,12 +137,6 @@ const SignAddress = () => {
             <FormControl>
               <FormLabel fontSize="lg" marginTop="3">
                 Complemento
-                {errors.complement && (
-                  <Text as="span" color="red">
-                    {" "}
-                    *
-                  </Text>
-                )}
               </FormLabel>
               <Input
                 placeholder="Apto 420 bloco 02"
@@ -144,7 +144,7 @@ const SignAddress = () => {
                 borderColor="neutralPalette.500"
                 size="lg"
                 name="complement"
-                ref={register({ required: true })}
+                ref={register}
               />
             </FormControl>
             <FormControl>
