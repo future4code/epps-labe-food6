@@ -1,5 +1,12 @@
 import { EditIcon } from "@chakra-ui/icons";
-import { Box, Flex, Heading, IconButton, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Flex,
+  Heading,
+  IconButton,
+  Text,
+} from "@chakra-ui/react";
 import React, { useContext } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -32,8 +39,10 @@ const Profile = () => {
           </Box>
           <IconButton icon={<EditIcon />} variant="ghost" fontSize="26px" />
         </Flex>
-        <Flex as="section" h="100%" w="100%" flexDirection="column">
-          profile page
+        <Flex padding="4" direction="column">
+          <Text fontSize="xl">Histórico de Pedidos</Text>
+          <Divider bgColor="black" marginTop="1" marginBottom="4" />
+          <OrderHistoryCard />
         </Flex>
         <Footer />
       </Flex>

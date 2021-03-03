@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 const OrderHistoryCard = () => {
   return (
@@ -8,7 +8,6 @@ const OrderHistoryCard = () => {
       color="neutralPalette.500"
       flexDirection="column"
       justify="space-between"
-      m="0.5em 1em"
     >
       <Flex
         border="1px solid"
