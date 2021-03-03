@@ -1,12 +1,12 @@
 import React from "react";
 import {
+
+  Divider,
   Flex,
   Input,
   InputGroup,
-  Divider,
   InputLeftElement,
-  Box,
-  Text,
+
 } from "@chakra-ui/react";
 import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
@@ -112,6 +112,9 @@ const Dashboard = () => {
   });
 
   return (
+
+
+
     <Flex as="main" h="100vh" w="100vw" direction="column" align="center">
       <Flex
         as="section"
@@ -119,6 +122,7 @@ const Dashboard = () => {
         direction="column"
         align="center"
         paddingBottom="80px"
+
       >
         <Header>FutureEats</Header>
         <Divider marginBottom="0.5em" />
@@ -134,7 +138,9 @@ const Dashboard = () => {
           <TabPanels>{restaurantsList}</TabPanels>
         </Tabs>
       </Flex>
+
       <Footer />
+
     </Flex>
   );
 };
