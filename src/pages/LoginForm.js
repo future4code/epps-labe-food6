@@ -34,30 +34,6 @@ const LoginForm = () => {
     }
   }, [history]);
 
-  // const login = (body, history) => {
-  // axios
-  //   .post(
-  //     `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/login/`,
-  //     body
-  //   )
-  //   .then((response) => {
-  //     localStorage.setItem("token", response.data.token);
-
-  //     console.log(response.data);
-
-  //     if (!response.data.user.hasAddress) {
-  //       // Ir para cadastrar endereço
-  //       goToSignAddress(history);
-  //     } else {
-  //       // Colocar para ir pro feed
-  //       goToFeed(history);
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     console.log(error.response.data.message);
-  //   });
-  // };
-
   const login = async (body, history) => {
     try {
       const response = await axios.post(`${base_url}/login`, body);
