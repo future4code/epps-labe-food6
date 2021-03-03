@@ -9,16 +9,16 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useContext } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import Header from "../components/Header";
 import { base_url } from "../constants";
-import AuthContext from "../contexts/authContext";
+// import AuthContext from "../contexts/authContext";
 import { goToLogin, goToSignAddress } from "../routing/Coordinator";
 
 const SignUp = () => {
-  const { setters } = useContext(AuthContext);
+  // const { setters } = useContext(AuthContext);
   const { handleSubmit, errors, register } = useForm();
   const toast = useToast();
   const history = useHistory();
@@ -34,11 +34,17 @@ const SignUp = () => {
         duration: 5000,
         isClosable: true,
       });
-
-      setters.setToken(response.data.token);
-      setters.setUser(response.data.user);
+      const token = response.data.token;
+      console.log(token);
+      localStorage.setItem("token", token);
+      console.log(response.data.user);
+      // setters.setToken(response.data.token);
+      // setters.setUser(response.data.user);
+      if (!response.data.user.hasAddress) {
+        goToSignAddress(history);
+      }
     } catch (err) {
-      if (err.response.data.message === "Email ou CPF já cadastrados") {
+      if (err && err.response.data.message === "Email ou CPF já cadastrados") {
         toast({
           title: "Email ou CPF já cadastrados!",
           description: (
@@ -61,10 +67,6 @@ const SignUp = () => {
     }
   };
 
-  const botao = () => {
-    goToSignAddress(history);
-  };
-
   const onSubmit = (data) => {
     console.log("form data", data);
 
@@ -81,6 +83,7 @@ const SignUp = () => {
       console.log(userData);
       createUser(userData);
     }
+    goToSignAddress(history);
   };
 
   return (
@@ -220,22 +223,12 @@ const SignUp = () => {
                 ref={register({ required: true, minLength: 6, maxLength: 16 })}
               />
             </FormControl>
-            {/* <Button
-              type="submit"
-              variant="solid"
-              fontSize="20px"
-              marginTop="6"
-              w="100%"
-            >
-              Cadastrar
-            </Button> */}
             <Button
               type="submit"
               variant="solid"
               fontSize="20px"
               marginTop="6"
               w="100%"
-              onClick={() => botao()}
             >
               Cadastrar
             </Button>

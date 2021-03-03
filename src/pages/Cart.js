@@ -5,7 +5,6 @@ import {
   Heading,
   Radio,
   RadioGroup,
-  Select,
   Text,
 } from "@chakra-ui/react";
 import React from "react";
@@ -45,6 +44,7 @@ const Cart = () => {
             {street}, {number}
           </Text>
         </Flex>
+
         {/* Items */}
         <Flex as="section" w="100%" h="100%" p="2" justify="center">
           {/* Array de cards */}
@@ -52,6 +52,7 @@ const Cart = () => {
             Seu carrinho está vazio.
           </Text>
         </Flex>
+
         {/* Shipping + Subtotal */}
         <Flex as="section" w="100%" h="100%" direction="column">
           <Flex justify="space-between" p="2">
@@ -72,6 +73,7 @@ const Cart = () => {
               </Text>
             </Box>
           </Flex>
+
           {/* Payment Method */}
           <Text boxShadow="1px 1px 1px lightgray" fontSize="xl" w="100%" p="2">
             Método de Pagamento:
@@ -92,7 +94,6 @@ const Cart = () => {
           </RadioGroup>
           <Button marginY="2">Ir para pagamento</Button>
         </Flex>
-        {/* Submit Button */}
       </Flex>
       <Footer />
     </Flex>

@@ -11,9 +11,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { goHome, goToSignUp } from "../routing/Coordinator";
+import { goToFeed, goToSignAddress, goToSignUp } from "../routing/Coordinator";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { base_url } from "../constants";
 
 const LoginForm = () => {
   const [show, setShow] = useState(false);
@@ -29,21 +30,43 @@ const LoginForm = () => {
     }
   }, [history]);
 
-  const login = (body, history) => {
-    axios
-      .post(
-        `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/login/`,
-        body
-      )
-      .then((response) => {
-        localStorage.setItem("token", response.data.token);
+  // const login = (body, history) => {
+  // axios
+  //   .post(
+  //     `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/login/`,
+  //     body
+  //   )
+  //   .then((response) => {
+  //     localStorage.setItem("token", response.data.token);
 
-        //Colocar para ir pro feed
-        goHome(history);
-      })
-      .catch((error) => {
-        console.log(error.response.data.message);
-      });
+  //     console.log(response.data);
+
+  //     if (!response.data.user.hasAddress) {
+  //       // Ir para cadastrar endereço
+  //       goToSignAddress(history);
+  //     } else {
+  //       // Colocar para ir pro feed
+  //       goToFeed(history);
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.log(error.response.data.message);
+  //   });
+  // };
+
+  const login = async (body, history) => {
+    try {
+      const response = await axios.post(`${base_url}/login`, body);
+      console.log(response.data);
+
+      if (!response.data.user.hasAddress) {
+        goToSignAddress(history);
+      } else {
+        goToFeed(history);
+      }
+    } catch (err) {
+      throw new Error(err.response.data.message);
+    }
   };
 
   const onSubmitForm = (data) => {
@@ -100,7 +123,6 @@ const LoginForm = () => {
             <InputRightElement width="4.5rem">
               <Button
                 type="submit"
-                fullWidth
                 variant="contained"
                 color="primary"
                 margin="normal"
@@ -126,7 +148,6 @@ const LoginForm = () => {
       <Button
         onClick={() => goToSignUp(history)}
         type={"submit"}
-        fullWidth
         variant={"text"}
         color={"primary"}
         margin={"normal"}

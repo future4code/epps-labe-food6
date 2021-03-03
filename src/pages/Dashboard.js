@@ -5,8 +5,6 @@ import {
   InputGroup,
   Divider,
   InputLeftElement,
-  Box,
-  Text,
 } from "@chakra-ui/react";
 import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
