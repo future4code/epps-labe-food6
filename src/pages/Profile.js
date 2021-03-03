@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import AuthContext from "../contexts/authContext";
-import useAuth from "../hooks/useAuth";
+import OrderHistoryCard from "../components/OrderHistoryCard";
 
 const Profile = () => {
   useAuth();
