@@ -12,7 +12,10 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import AuthContext from "../contexts/authContext";
 import OrderHistoryCard from "../components/OrderHistoryCard";
+<<<<<<< HEAD
 import useAuth from "../hooks/useAuth";
+=======
+>>>>>>> 30bb3111316b597961beaa664eccdacf7dd6d2e4
 
 const Profile = () => {
   useAuth();
