@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, SimpleGrid, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import testImage from "../images/falafal_shawarma.jpg";
 
 const RestaurantCard = () => {
@@ -18,7 +18,7 @@ const RestaurantCard = () => {
         <Text>Tipo do restaurante</Text>
         <Flex justify="space-between">
           <Text>50 - 60min</Text>
-          <Text>Frete R$</Text>
+          <Text>Frete R$ 10,00</Text>
         </Flex>
         <Text>Endereço</Text>
       </Flex>

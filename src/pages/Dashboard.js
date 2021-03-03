@@ -1,5 +1,11 @@
 import React from "react";
-import { Flex, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import {
+  Divider,
+  Flex,
+  Input,
+  InputGroup,
+  InputLeftElement,
+} from "@chakra-ui/react";
 import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
@@ -78,28 +84,28 @@ const Dashboard = () => {
 
   return (
     <Flex as="main" mx="1em" h="100vh" direction="column" align="center">
-    <Flex
-      as="main"
-      mx="1em"
-      w="isFullWidth"
-      h="100vh"
-      direction="column"
-      align="center"
-    >
-      <Divider marginBottom="0.5em" />
-      <Header>FutureEats</Header>
-      <Divider marginBottom="0.5em" />
-      <InputGroup marginTop="2">
-        <InputLeftElement
-          pointerEvents="none"
-          children={<Search2Icon color="gray.300" />}
-        />
-        <Input placeholder="Restaurante" />
-      </InputGroup>
-      <Tabs>
-        <TabList>{category}</TabList>
-        <TabPanels>{restaurantsList}</TabPanels>
-      </Tabs>
+      <Flex
+        as="main"
+        mx="1em"
+        w="isFullWidth"
+        h="100vh"
+        direction="column"
+        align="center"
+      >
+        <Header>FutureEats</Header>
+        <Divider marginBottom="0.5em" />
+        <InputGroup marginTop="2">
+          <InputLeftElement
+            pointerEvents="none"
+            children={<Search2Icon color="gray.300" />}
+          />
+          <Input placeholder="Restaurante" />
+        </InputGroup>
+        <Tabs>
+          <TabList>{category}</TabList>
+          <TabPanels>{restaurantsList}</TabPanels>
+        </Tabs>
+      </Flex>
     </Flex>
   );
 };

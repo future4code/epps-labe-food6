@@ -37,7 +37,7 @@ const Router = () => {
             <Cart />
           </Route>
           <Route exact path={"/restaurantdetails"}>
-            <RestaurantDetailsPage />
+            <RestaurantDetails />
           </Route>
         </Switch>
       </BrowserRouter>
