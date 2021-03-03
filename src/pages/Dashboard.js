@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import {
+  Box,
   Divider,
   Flex,
   Input,
@@ -115,9 +116,6 @@ const Dashboard = () => {
   });
 
   return (
-
-
-
     <Flex as="main" h="100vh" w="100vw" direction="column" align="center">
       <Flex
         as="section"
@@ -125,17 +123,17 @@ const Dashboard = () => {
         direction="column"
         align="center"
         paddingBottom="80px"
-
       >
         <Header>FutureEats</Header>
-        <Divider marginBottom="0.5em" />
-        <InputGroup marginTop="2">
-          <InputLeftElement
-            pointerEvents="none"
-            children={<Search2Icon color="gray.300" />}
-          />
-          <Input placeholder="Restaurante" />
-        </InputGroup>
+        <Box paddingX="4" w="100%">
+          <InputGroup marginTop="2">
+            <InputLeftElement
+              pointerEvents="none"
+              children={<Search2Icon color="gray.300" />}
+            />
+            <Input placeholder="Restaurante" />
+          </InputGroup>
+        </Box>
         <Tabs>
           <TabList>{category}</TabList>
           <TabPanels>{restaurantsList}</TabPanels>
@@ -143,7 +141,6 @@ const Dashboard = () => {
       </Flex>
 
       <Footer />
-
     </Flex>
   );
 };

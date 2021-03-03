@@ -7,18 +7,19 @@ import {
   RadioGroup,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import AuthContext from "../contexts/authContext";
 import useAuth from "../hooks/useAuth";
 
 const Cart = () => {
   useAuth();
 
+  const { states } = useContext(AuthContext);
+
   const frete = "R$6,99";
   const subtotal = "R$42,00";
-  const street = "Av. Brasil";
-  const number = "420";
 
   return (
     <Flex
@@ -40,12 +41,10 @@ const Cart = () => {
           direction="column"
           bgColor="#ddd"
         >
-          <Heading as="h6" fontSize="18px" fontWeight="500">
+          <Heading as="h6" fontSize="18px" fontWeight="500" color="GrayText">
             Endereço da entrega
           </Heading>
-          <Text fontSize="lg">
-            {street}, {number}
-          </Text>
+          <Text fontSize="lg">{states.user && states.user.address}</Text>
         </Flex>
 
         {/* Items */}

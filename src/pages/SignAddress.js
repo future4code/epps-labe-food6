@@ -20,28 +20,10 @@ import { goToFeed } from "../routing/Coordinator";
 // import { goToLogin, goToSignAddress } from "../routing/Coordinator";
 
 const SignAddress = () => {
-  const { requests, setters } = useContext(AuthContext);
+  const { setters } = useContext(AuthContext);
   const { handleSubmit, errors, register } = useForm();
   const history = useHistory();
   const toast = useToast();
-
-  // toast({
-  //   title: "Email ou CPF já cadastrados!",
-  //   description: (
-  //     <Button
-  //       onClick={() => goToLogin(history)}
-  //       variant="link"
-  //       size="lg"
-  //       color="neutralPalette.100"
-  //       margin="2"
-  //     >
-  //       Ir para tela de Login
-  //     </Button>
-  //   ),
-  //   status: "error",
-  //   duration: 30000,
-  //   isClosable: true,
-  // });
 
   const createAddress = async (address) => {
     console.log("address data", address);
@@ -62,7 +44,6 @@ const SignAddress = () => {
       });
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
-      requests.getUserByToken(response.data.token);
       setters.setToken(response.data.token);
       setters.setToken(response.data.user);
       goToFeed(history);
