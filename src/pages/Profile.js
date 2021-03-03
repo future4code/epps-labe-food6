@@ -1,10 +1,21 @@
 import { EditIcon } from "@chakra-ui/icons";
-import { Box, Flex, Heading, IconButton, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Flex,
+  Heading,
+  IconButton,
+  Text,
+} from "@chakra-ui/react";
 import React, { useContext } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import AuthContext from "../contexts/authContext";
 import OrderHistoryCard from "../components/OrderHistoryCard";
+<<<<<<< HEAD
+import useAuth from "../hooks/useAuth";
+=======
+>>>>>>> 30bb3111316b597961beaa664eccdacf7dd6d2e4
 
 const Profile = () => {
   useAuth();
@@ -31,8 +42,13 @@ const Profile = () => {
           </Box>
           <IconButton icon={<EditIcon />} variant="ghost" fontSize="26px" />
         </Flex>
+        <Flex padding="4" direction="column">
+          <Text fontSize="xl">Histórico de Pedidos</Text>
+          <Divider bgColor="black" marginTop="1" marginBottom="4" />
+          <OrderHistoryCard />
+        </Flex>
+        <Footer />
       </Flex>
-      <Footer />
     </Flex>
   );
 };
