@@ -13,6 +13,7 @@ import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import RestaurantCard from "../components/RestaurantCard";
 import Footer from "../components/Footer";
+import { useInput } from "../hooks/useInput";
 
 const arrFood = [
   {
@@ -66,6 +67,8 @@ const arrFood = [
 ];
 
 const Dashboard = () => {
+  const [search, handleSearch] = useInput()
+
   const category = arrFood.map((type) => {
     return <Tab key={type.id}>{type.category}</Tab>;
   });
@@ -122,7 +125,6 @@ const Dashboard = () => {
         direction="column"
         align="center"
         paddingBottom="80px"
-
       >
         <Header>FutureEats</Header>
         <Divider marginBottom="0.5em" />
@@ -131,7 +133,11 @@ const Dashboard = () => {
             pointerEvents="none"
             children={<Search2Icon color="gray.300" />}
           />
-          <Input placeholder="Restaurante" />
+          <Input
+            value={search}
+            onChange={handleSearch}
+            placeholder="Restaurante"
+          />
         </InputGroup>
         <Tabs>
           <TabList>{category}</TabList>
@@ -139,7 +145,7 @@ const Dashboard = () => {
         </Tabs>
       </Flex>
 
-      <Footer />
+      {/* <Footer /> */}
 
     </Flex>
   );
