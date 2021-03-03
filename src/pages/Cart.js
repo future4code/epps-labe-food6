@@ -10,8 +10,11 @@ import {
 import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import useAuth from "../hooks/useAuth";
 
 const Cart = () => {
+  useAuth();
+
   const frete = "R$6,99";
   const subtotal = "R$42,00";
   const street = "Av. Brasil";

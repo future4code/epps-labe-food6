@@ -6,34 +6,24 @@ import {
   FormLabel,
   Input,
   Text,
-  // useToast,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React from "react";
-// , { useContext, useEffect }
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
 import Header from "../components/Header";
 import { base_url } from "../constants";
-// import AuthContext from "../contexts/authContext";
+import AuthContext from "../contexts/authContext";
 import { goToFeed } from "../routing/Coordinator";
 // import { goToLogin, goToSignAddress } from "../routing/Coordinator";
 
 const SignAddress = () => {
-  // const { states, requests, setters } = useContext(AuthContext);
+  const { requests, setters } = useContext(AuthContext);
   const { handleSubmit, errors, register } = useForm();
   const history = useHistory();
-  // const toast = useToast();
-  // const history = useHistory();
-
-  // toast({
-  //   title: `Seja bem-vindx ${user.name}!`,
-  //   description: `Email cadastrado: ${user.email}.`,
-  //   status: "success",
-  //   duration: 5000,
-  //   isClosable: true,
-  // });
+  const toast = useToast();
 
   // toast({
   //   title: "Email ou CPF já cadastrados!",
@@ -62,8 +52,19 @@ const SignAddress = () => {
           auth: token,
         },
       });
+
+      toast({
+        title: `Seu endereço foi cadastrado!`,
+        description: `Endereço: ${response.data.address}.`,
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
       console.log(response.data);
-      // setters.setToken(response.data.token);
+      localStorage.setItem("token", response.data.token);
+      requests.getUserByToken(response.data.token);
+      setters.setToken(response.data.token);
+      setters.setToken(response.data.user);
       goToFeed(history);
     } catch (err) {
       throw new Error(err.response.data.message);

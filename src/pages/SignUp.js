@@ -9,7 +9,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import Header from "../components/Header";
@@ -18,10 +18,18 @@ import { base_url } from "../constants";
 import { goToLogin, goToSignAddress } from "../routing/Coordinator";
 
 const SignUp = () => {
+  const token = localStorage.getItem("token");
+
   // const { setters } = useContext(AuthContext);
   const { handleSubmit, errors, register } = useForm();
   const toast = useToast();
   const history = useHistory();
+
+  useEffect(() => {
+    if (token) {
+      history.push("/feed/restaurants");
+    }
+  }, [history, token]);
 
   const createUser = async (user) => {
     console.log("createUser data input", user);

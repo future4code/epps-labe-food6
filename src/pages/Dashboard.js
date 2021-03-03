@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Divider,
   Flex,
@@ -11,6 +11,8 @@ import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import RestaurantCard from "../components/RestaurantCard";
 import Footer from "../components/Footer";
+import AuthContext from "../contexts/authContext";
+import useAuth from "../hooks/useAuth";
 
 const arrFood = [
   {
@@ -64,6 +66,9 @@ const arrFood = [
 ];
 
 const Dashboard = () => {
+  const { states, requests } = useContext(AuthContext);
+  useAuth();
+
   const category = arrFood.map((type) => {
     return <Tab key={type.id}>{type.category}</Tab>;
   });
