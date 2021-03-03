@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import AuthContext from "../contexts/authContext";
+import OrderHistoryCard from "../components/OrderHistoryCard";
 import useAuth from "../hooks/useAuth";
 
 const Profile = () => {
@@ -31,8 +32,11 @@ const Profile = () => {
           </Box>
           <IconButton icon={<EditIcon />} variant="ghost" fontSize="26px" />
         </Flex>
+        <Flex as="section" h="100%" w="100%" flexDirection="column">
+          profile page
+        </Flex>
+        <Footer />
       </Flex>
-      <Footer />
     </Flex>
   );
 };
