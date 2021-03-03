@@ -10,16 +10,18 @@ const Header = (props) => {
   const params = useParams();
 
   const path = (pathParams) => {
-    pathParams = params.page;
+    pathParams = params;
+    console.log(pathParams);
     let pathUrl = pathParams;
     if (
-      // pathParams.includes("restaurants" || "profile/:userId" || "cart/:userId")
       pathParams === "restaurants" ||
-      pathParams === "profile/:userId" ||
-      pathParams === "cart/:userId"
+      pathParams === "profile" ||
+      pathParams === "cart"
     ) {
       pathUrl = pathParams;
     }
+
+    console.log(pathUrl);
     return pathUrl;
   };
 
@@ -45,9 +47,7 @@ const Header = (props) => {
             color="neutralPalette.900"
             fontSize="32px"
             onClick={() => goHome(history)}
-          >
-            voltar
-          </IconButton>
+          />
           <Text w="90%" textAlign="center" fontSize="22px">
             {props.children}
           </Text>
