@@ -6,20 +6,26 @@ import {
   Radio,
   RadioGroup,
   Text,
+  useToast,
 } from "@chakra-ui/react";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import AuthContext from "../contexts/authContext";
+import CartContext from "../contexts/cartContext";
+import RestaurantContext from "../contexts/restaurantContext";
 import useAuth from "../hooks/useAuth";
 
 const Cart = () => {
   useAuth();
+  const { authStates } = useContext(AuthContext);
+  const { cartStates } = useContext(CartContext);
+  const { restaurantStates } = useContext(RestaurantContext);
+  const toast = useToast();
 
-  const { states } = useContext(AuthContext);
-
-  const frete = "R$6,99";
-  const subtotal = "R$42,00";
+  useEffect(() => {
+    console.log(cartStates.order);
+  }, [cartStates.order]);
 
   return (
     <Flex
@@ -44,7 +50,9 @@ const Cart = () => {
           <Heading as="h6" fontSize="18px" fontWeight="500" color="GrayText">
             Endereço da entrega
           </Heading>
-          <Text fontSize="lg">{states.user && states.user.address}</Text>
+          <Text fontSize="lg">
+            {authStates.user && authStates.user.address}
+          </Text>
         </Flex>
 
         {/* Items */}
@@ -63,7 +71,8 @@ const Cart = () => {
             </Text>
             <Box>
               <Text fontSize="xl" fontWeight="500" justifySelf="flex-end">
-                Frete {frete}
+                Frete{" "}
+                {/* {cartStates.shipping.shipping && cartStates.shipping.shipping} */}
               </Text>
               <Text
                 fontSize="xl"
@@ -71,7 +80,7 @@ const Cart = () => {
                 justifySelf="flex-end"
                 color="greenPalette.300"
               >
-                R$ {subtotal}
+                {/* R$ {cartStates.order.totalPrice} */}
               </Text>
             </Box>
           </Flex>
@@ -94,7 +103,20 @@ const Cart = () => {
               Dinheiro
             </Radio>
           </RadioGroup>
-          <Button marginY="2">Ir para pagamento</Button>
+          <Button
+            m="2"
+            onClick={() =>
+              toast({
+                title: "Desculpe!",
+                description: "Ainda não temos área de pagamento!",
+                status: "warning",
+                duration: 5000,
+                isClosable: true,
+              })
+            }
+          >
+            Ir para pagamento
+          </Button>
         </Flex>
       </Flex>
       <Footer />

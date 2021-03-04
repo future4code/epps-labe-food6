@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Flex,
   Image,
@@ -18,6 +17,7 @@ import React from "react";
 
 const ProductCard = ({ name, description, price, photoUrl }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Flex
       as="article"

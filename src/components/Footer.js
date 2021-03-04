@@ -9,9 +9,9 @@ import { goToFeed, goToCart, goToProfile } from "../routing/Coordinator";
 
 const Footer = () => {
   const history = useHistory();
-  const { states } = useContext(AuthContext);
+  const { authStates } = useContext(AuthContext);
 
-  const userId = states.user.id;
+  const userId = authStates.user.id;
 
   return (
     <Flex

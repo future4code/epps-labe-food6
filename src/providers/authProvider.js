@@ -18,6 +18,7 @@ const AuthProvider = (props) => {
       });
       console.log("Current User", response.data.user);
       setUser(response.data.user);
+      console.log(token);
     } catch (err) {
       throw new Error(err.response.data.message);
     }
@@ -27,7 +28,7 @@ const AuthProvider = (props) => {
     try {
       const response = await axios.get(`${base_url}/profile/address`, {
         headers: {
-          auth: states.token,
+          auth: authStates.token,
         },
       });
       setAddress(response.data.address);
@@ -44,13 +45,13 @@ const AuthProvider = (props) => {
     }
   }, [token]);
 
-  const states = { user, token, address };
+  const authStates = { user, token, address };
 
-  const requests = { getUserByToken, getAddress };
+  const authRequests = { getUserByToken, getAddress };
 
-  const setters = { setUser, setToken, setAddress };
+  const authSetters = { setUser, setToken, setAddress };
 
-  const data = { states, requests, setters };
+  const data = { authStates, authRequests, authSetters };
 
   return (
     <AuthContext.Provider value={data}>{props.children}</AuthContext.Provider>

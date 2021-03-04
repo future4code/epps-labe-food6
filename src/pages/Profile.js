@@ -18,14 +18,14 @@ import { useHistory } from "react-router-dom";
 
 const Profile = () => {
   useAuth();
-  const { states, requests } = useContext(AuthContext);
+  const { authStates, authRequests } = useContext(AuthContext);
   const history = useHistory();
 
   useEffect(() => {
-    if (states.token) {
-      requests.getUserByToken(states.token);
+    if (authStates.token) {
+      authRequests.getUserByToken(authStates.token);
     }
-  }, [states.token]);
+  }, [authStates.token]);
 
   return (
     <Flex as="main" w="100vw" h="100vh" direction="column" align="center">
@@ -33,15 +33,15 @@ const Profile = () => {
       <Flex as="section" h="100%" w="100%" direction="column">
         <Flex w="100%" justifyContent="space-between" align="center">
           <Box w="100%" p="4">
-            <Text>{states.user && states.user.name}</Text>
-            <Text>{states.user && states.user.email}</Text>
-            <Text>{states.user && states.user.cpf}</Text>
+            <Text>{authStates.user && authStates.user.name}</Text>
+            <Text>{authStates.user && authStates.user.email}</Text>
+            <Text>{authStates.user && authStates.user.cpf}</Text>
           </Box>
           <IconButton
             icon={<EditIcon />}
             variant="ghost"
             fontSize="26px"
-            onClick={() => goToEditProfile(history, states.user.id)}
+            onClick={() => goToEditProfile(history, authStates.user.id)}
           />
         </Flex>
         <Flex as="section" w="100%" bgColor="#ddd" align="center">
@@ -49,13 +49,15 @@ const Profile = () => {
             <Heading as="h6" fontSize="18px" fontWeight="500" color="GrayText">
               Endereço cadastrado
             </Heading>
-            <Text fontSize="lg">{states.user && states.user.address}</Text>
+            <Text fontSize="lg">
+              {authStates.user && authStates.user.address}
+            </Text>
           </Box>
           <IconButton
             icon={<EditIcon />}
             variant="ghost"
             fontSize="26px"
-            onClick={() => goToEditAddress(history, states.user.id)}
+            onClick={() => goToEditAddress(history, authStates.user.id)}
           />
         </Flex>
         <Flex padding="4" direction="column">

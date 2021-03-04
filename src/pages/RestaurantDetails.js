@@ -10,28 +10,30 @@ import useAuth from "../hooks/useAuth";
 
 const RestaurantDetails = () => {
   useAuth();
-  const { states, requests } = useContext(RestaurantContext);
+  const { restaurantStates, restaurantRequests } = useContext(
+    RestaurantContext
+  );
   const pathParams = useParams();
   const restaurantId = pathParams.restaurantId;
 
   useEffect(() => {
-    requests.getRestaurantById(restaurantId);
+    restaurantRequests.getRestaurantById(restaurantId);
   }, []);
 
   return (
     <Flex flexDirection="column" w="100vw">
       <Header>Restaurante</Header>
       <RestaurantDetailsCard
-        name={states.restaurant.name}
-        type={states.restaurant.type}
-        deliveryTime={states.restaurant.deliveryTime}
-        logoUrl={states.restaurant.logoUrl}
-        shipping={states.restaurant.shipping}
-        address={states.restaurant.address}
+        name={restaurantStates.restaurant.name}
+        type={restaurantStates.restaurant.type}
+        deliveryTime={restaurantStates.restaurant.deliveryTime}
+        logoUrl={restaurantStates.restaurant.logoUrl}
+        shipping={restaurantStates.restaurant.shipping}
+        address={restaurantStates.restaurant.address}
       />
       <Category />
-      {states.restaurant.products &&
-        states.restaurant.products.map((product) => {
+      {restaurantStates.restaurant.products &&
+        restaurantStates.restaurant.products.map((product) => {
           return (
             <ProductCard
               key={product.id}

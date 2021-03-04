@@ -17,12 +17,12 @@ import RestaurantContext from "../contexts/restaurantContext";
 import { useInput } from "../hooks/useInput";
 
 const Dashboard = () => {
-  const { states } = useContext(RestaurantContext);
+  const { restaurantStates } = useContext(RestaurantContext);
   useAuth();
 
   const [search, handleSearch] = useInput();
 
-  const category = states.restaurants
+  const category = restaurantStates.restaurants
     .reduce((acc, current) => {
       const key = acc.find((item) => item.category === current.category);
       if (!key) {
@@ -35,7 +35,7 @@ const Dashboard = () => {
       return <Tab key={restaurant.id}>{restaurant.category}</Tab>;
     });
 
-  const restaurantsList = states.restaurants.map((restaurant) => {
+  const restaurantsList = restaurantStates.restaurants.map((restaurant) => {
     // .filter => restaurante por tipo ===== array restaurantes
 
     // .filter => restaurante por nome ===== array restaurantes com nome >por tipo ou não<
