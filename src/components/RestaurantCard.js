@@ -1,8 +1,11 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { goToRestaurantDetails } from "../routing/Coordinator";
 
 const RestaurantCard = ({
   key,
+  restaurantId,
   deliveryTime,
   category,
   description,
@@ -11,6 +14,7 @@ const RestaurantCard = ({
   name,
   logoUrl,
 }) => {
+  const history = useHistory();
   return (
     <Flex
       as="article"
@@ -23,10 +27,12 @@ const RestaurantCard = ({
     >
       <Box w="100%">
         <Image
+          maxWidth="100%"
           src={logoUrl}
           alt={description}
           objectFit="contain"
           borderRadius="8px 8px 0 0"
+          onClick={() => goToRestaurantDetails(history, restaurantId)}
         />
       </Box>
       <Flex color="neutralPalette.500" flexDirection="column" padding="1em">

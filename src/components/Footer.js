@@ -23,7 +23,8 @@ const Footer = () => {
       position="fixed"
       bottom="0"
       bgColor="neutralPalette.100"
-      boxShadow="1px 1px 4px black"
+      borderTop="1px solid"
+      borderColor="neutralPalette.400"
     >
       <Flex
         as="nav"
@@ -31,7 +32,7 @@ const Footer = () => {
         h="100%"
         align="center"
         justify="space-around"
-        color="GrayText"
+        color="neutralPalette.400"
       >
         <IconButton
           icon={<CgHomeAlt />}

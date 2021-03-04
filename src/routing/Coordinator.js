@@ -26,7 +26,6 @@ export const goToProfile = (history, id) => {
   history.push(`/feed/profile/${id}`);
 };
 
-//de olho pra consertar essa rota aqui, é só pra ver a renderização
-export const goToRestaurantDetails = (history) => {
-  history.push("/restaurantdetails");
+export const goToRestaurantDetails = (history, id) => {
+  history.push(`/feed/details/${id}`);
 };

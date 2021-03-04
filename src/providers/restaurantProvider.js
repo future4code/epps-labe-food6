@@ -6,14 +6,26 @@ import RestaurantContext from "../contexts/restaurantContext";
 const RestaurantProvider = (props) => {
   const [restaurant, setRestaurant] = useState({});
   const [restaurants, setRestaurants] = useState([]);
+  const token = localStorage.getItem("token");
 
   const getRestaurants = async () => {
-    const token = localStorage.getItem("token");
     try {
       const response = await axios.get(`${base_url}/restaurants`, {
         headers: { auth: token },
       });
       setRestaurants(response.data.restaurants);
+    } catch (err) {
+      throw new Error(err.response.data.message);
+    }
+  };
+
+  const getRestaurantById = async (restaurantId) => {
+    try {
+      const response = await axios.get(
+        `${base_url}/restaurants/${restaurantId}`,
+        { headers: { auth: token } }
+      );
+      console.log(response.data);
     } catch (err) {
       throw new Error(err.response.data.message);
     }
@@ -25,7 +37,7 @@ const RestaurantProvider = (props) => {
 
   const states = { restaurant, restaurants };
   const setters = { setRestaurant, setRestaurants };
-  const requests = { getRestaurants };
+  const requests = { getRestaurants, getRestaurantById };
   const data = { states, setters, requests };
 
   return (

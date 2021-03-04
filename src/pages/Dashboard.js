@@ -18,18 +18,19 @@ const Dashboard = () => {
   const { states } = useContext(RestaurantContext);
   useAuth();
 
-  const category = states.restaurants.map((type) => {
-    return <Tab key={type.id}>{type.category}</Tab>;
+  const category = states.restaurants.map((type, index) => {
+    if (index < 4) return <Tab key={type.id}>{type.category}</Tab>;
   });
 
   const restaurantsList = states.restaurants.map((restaurant) => {
     // .filter => restaurante por tipo ===== array restaurantes
 
     // .filter => restaurante por nome ===== array restaurantes com nome >por tipo ou não<
-
+    console.log(restaurant.id);
     return (
       <RestaurantCard
         key={restaurant.id}
+        restaurantId={restaurant.id}
         deliveryTime={restaurant.deliveryTime}
         category={restaurant.category}
         description={restaurant.description}
