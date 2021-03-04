@@ -30,7 +30,7 @@ const ProductCard = ({ name, description, price, photoUrl }) => {
       _hover={{
         backgroundColor: "neutralPalette.400",
       }}
-      _focus={{
+      _active={{
         borderColor: "greenPalette.400",
       }}
     >
