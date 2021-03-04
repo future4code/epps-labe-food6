@@ -44,11 +44,11 @@ const Dashboard = () => {
   //   if (index < 4) return <Tab key={type.id}>{type.category}</Tab>;
   // });
 
+
   const restaurantsList = states.restaurants.map((restaurant) => {
     // .filter => restaurante por tipo ===== array restaurantes
 
     // .filter => restaurante por nome ===== array restaurantes com nome >por tipo ou não<
-    // console.log(restaurant.id);
     return (
       <RestaurantCard
         key={restaurant.id}
@@ -95,9 +95,7 @@ const Dashboard = () => {
         </Tabs>
       </Flex>
 
-
       <Footer />
-
     </Flex>
   );
 };
