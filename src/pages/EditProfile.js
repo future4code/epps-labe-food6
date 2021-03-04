@@ -2,15 +2,13 @@ import { Button, Flex, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { base_url } from "../constants";
 import AuthContext from "../contexts/authContext";
 
 const EditProfile = () => {
-  const pathParams = useParams();
-  const { requests, states, setters } = useContext(AuthContext);
-  const { handleSubmit, errors, register } = useForm();
+  const { states } = useContext(AuthContext);
+  const { handleSubmit, register } = useForm();
 
   useEffect(() => {
     console.log(states.user);
