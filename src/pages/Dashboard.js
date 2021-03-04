@@ -14,7 +14,6 @@ import RestaurantCard from "../components/RestaurantCard";
 import Footer from "../components/Footer";
 import useAuth from "../hooks/useAuth";
 import RestaurantContext from "../contexts/restaurantContext";
-
 import { useInput } from "../hooks/useInput";
 
 const Dashboard = () => {

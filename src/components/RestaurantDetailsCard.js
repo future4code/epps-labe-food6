@@ -10,8 +10,8 @@ const RestaurantCard = ({
   address,
 }) => {
   return (
-    <Flex as="article" flexDirection="column" mx="1em">
-      <Box grow="1" py="1em">
+    <Flex as="article" flexDirection="column" m="1em">
+      <Box py="1em">
         <Image
           src={logoUrl}
           alt="Shawarma de falafel mega gostoso"
