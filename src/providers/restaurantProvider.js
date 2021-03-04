@@ -33,7 +33,9 @@ const RestaurantProvider = (props) => {
   };
 
   useEffect(() => {
-    getRestaurants();
+    if (token) {
+      getRestaurants();
+    }
   }, []);
 
   const states = { restaurant, restaurants };

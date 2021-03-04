@@ -25,12 +25,10 @@ const LoginForm = () => {
   const { setters } = useContext(AuthContext);
 
   useEffect(() => {
-    const token = window.localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-    if (!token) {
-      history.push("/login");
-    } else {
-      history.push("/feed/restaurants");
+    if (token) {
+      goToFeed(history);
     }
   }, [history]);
 
