@@ -13,10 +13,13 @@ import Header from "../components/Header";
 import AuthContext from "../contexts/authContext";
 import OrderHistoryCard from "../components/OrderHistoryCard";
 import useAuth from "../hooks/useAuth";
+import { goToEditProfile } from "../routing/Coordinator";
+import { useHistory } from "react-router-dom";
 
 const Profile = () => {
   useAuth();
   const { states } = useContext(AuthContext);
+  const history = useHistory();
 
   return (
     <Flex as="main" w="100vw" h="100vh" direction="column" align="center">
@@ -28,7 +31,12 @@ const Profile = () => {
             <Text>{states.user && states.user.email}</Text>
             <Text>{states.user && states.user.cpf}</Text>
           </Box>
-          <IconButton icon={<EditIcon />} variant="ghost" fontSize="26px" />
+          <IconButton
+            icon={<EditIcon />}
+            variant="ghost"
+            fontSize="26px"
+            onClick={() => goToEditProfile(history, states.user.id)}
+          />
         </Flex>
         <Flex as="section" w="100%" bgColor="#ddd" align="center">
           <Box w="100%" p="4">

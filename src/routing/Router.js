@@ -10,7 +10,9 @@ import LoginPage from "../pages/LoginPage";
 import Profile from "../pages/Profile";
 import Cart from "../pages/Cart";
 import RestaurantProvider from "../providers/restaurantProvider";
+
 import Error from "../pages/Error";
+import EditProfile from "../pages/EditProfile";
 
 const Router = () => {
   return (
@@ -33,14 +35,17 @@ const Router = () => {
             <Route exact path={"/feed/restaurants"}>
               <Dashboard />
             </Route>
+            <Route exact path={"/feed/details/:restaurantId"}>
+              <RestaurantDetails />
+            </Route>
             <Route exact path={"/feed/cart/:userId"}>
               <Cart />
             </Route>
             <Route exact path={"/feed/profile/:userId"}>
               <Profile />
             </Route>
-            <Route exact path={"/feed/details/:restaurantId"}>
-              <RestaurantDetails />
+            <Route exact path={"/feed/profile/edit/:userId"}>
+              <EditProfile />
             </Route>
             <Route>
               <Error />

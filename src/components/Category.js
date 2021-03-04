@@ -5,7 +5,7 @@ const Category = () => {
   return (
     <Box py="0.5em">
       <Text mx="1em" py="0.5em" borderBottom="1px black solid">
-        Categoría
+        Categoria
       </Text>
     </Box>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
-import testImage from "../images/falafal_shawarma.jpg";
 
 const RestaurantCard = ({
   name,
