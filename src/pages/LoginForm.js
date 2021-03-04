@@ -22,7 +22,7 @@ const LoginForm = () => {
   const handleClick = () => setShow(!show);
   const { handleSubmit, register } = useForm();
   const history = useHistory();
-  const { requests, setters } = useContext(AuthContext);
+  const { setters } = useContext(AuthContext);
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");

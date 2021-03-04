@@ -3,7 +3,6 @@ import AuthContext from "../contexts/authContext";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { base_url } from "../constants";
-import { useAuth } from "../hooks/useAuth";
 
 const AuthProvider = (props) => {
   const [user, setUser] = useState({});
