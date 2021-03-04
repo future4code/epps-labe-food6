@@ -10,6 +10,8 @@ import LoginPage from "../pages/LoginPage";
 import Profile from "../pages/Profile";
 import Cart from "../pages/Cart";
 import RestaurantProvider from "../providers/restaurantProvider";
+
+import Error from "../pages/Error";
 import EditProfile from "../pages/EditProfile";
 
 const Router = () => {
@@ -44,6 +46,9 @@ const Router = () => {
             </Route>
             <Route exact path={"/feed/profile/edit/:userId"}>
               <EditProfile />
+            </Route>
+            <Route>
+              <Error />
             </Route>
           </Switch>
         </BrowserRouter>
