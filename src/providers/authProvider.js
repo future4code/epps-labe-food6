@@ -16,7 +16,7 @@ const AuthProvider = (props) => {
           auth: token,
         },
       });
-      console.log("User global state", response.data.user);
+      console.log("Current User", response.data.user);
       setUser(response.data.user);
     } catch (err) {
       throw new Error(err.response.data.message);
