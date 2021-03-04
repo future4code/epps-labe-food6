@@ -21,50 +21,49 @@ const ProductCard = ({ name, description, price, photoUrl }) => {
   return (
     <Flex
       as="article"
-      mx="1em"
-      my="0.5em"
       border="1px solid"
-      borderColor="neutralPalette.500"
+      borderColor="neutralPalette.400"
       borderRadius="8px"
-      p="0"
+      m="0.5em"
+      h="7em"
     >
-      <Box w="35%">
+      <Flex w="30%" h="7em">
         <Image
-          h="100%"
           w="100%"
-          paddingRight="1em"
           src={photoUrl}
-          alt={description}
           objectFit="cover"
-          borderRadius="8px 8px 0 0"
+          alt={description}
+          borderRadius="8px 0 0 8px "
         />
-      </Box>
-      <Flex
-        color="neutralPalette.500"
-        flexDirection="column"
-        justify="space-between"
-      >
-        <Text color="greenPalette.400" paddingTop="1em">
-          {name}
-        </Text>
-        <Text fontSize="sm" lineHeight="12px">
-          {description}
-        </Text>
-        <Flex justify="space-between">
-          <Text color="black">R$ {price}</Text>
-        </Flex>
-        <Button
-          colorScheme="greenPalette.400"
-          size="md"
-          m="0"
-          borderRadius="8px 0 8px 0"
-          variant="outline"
-          alignSelf="flex-end"
-          justifySelf="flex-end"
-          onClick={onOpen}
+      </Flex>
+      <Flex direction="column" grow="1">
+        <Flex
+          color="neutralPalette.500"
+          flexDirection="column"
+          px="1em"
+          paddingTop="0.5em"
+          grow="1"
         >
-          adicionar
-        </Button>
+          <Text color="greenPalette.400">{name}</Text>
+          <Text fontSize="sm">{description}</Text>
+
+          <Text color="black">
+            <strong>R$ {price}</strong>
+          </Text>
+        </Flex>
+        <Flex justify="flex-end">
+          <Button
+            colorScheme="greenPalette.400"
+            size="sm"
+            borderRadius="8px 0 8px 0"
+            variant="outline"
+            onClick={onOpen}
+            m="0"
+          >
+            adicionar
+          </Button>
+        </Flex>
+
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent w="60%">

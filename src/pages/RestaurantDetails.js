@@ -19,7 +19,7 @@ const RestaurantDetails = () => {
   }, []);
 
   return (
-    <Flex flexDirection="column">
+    <Flex flexDirection="column" w="100vw">
       <Header>Restaurante</Header>
       <RestaurantDetailsCard
         name={states.restaurant.name}

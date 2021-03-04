@@ -14,32 +14,26 @@ import RestaurantCard from "../components/RestaurantCard";
 import Footer from "../components/Footer";
 import useAuth from "../hooks/useAuth";
 import RestaurantContext from "../contexts/restaurantContext";
-
 import { useInput } from "../hooks/useInput";
-import styled from 'styled-components'
-
-// const CategoryNav = styled(TabList)`
-
-// `
 
 const Dashboard = () => {
   const { states } = useContext(RestaurantContext);
   useAuth();
 
-  const [search, handleSearch] = useInput()
+  const [search, handleSearch] = useInput();
 
-  const category = states.restaurants.reduce((acc, current) => {
-    const key = acc.find(item => item.category === current.category);
-    if (!key) {
-      return acc.concat([current])
-    } else {
-      return acc
-    }
-  }, []).map((restaurant) => {
-    return (
-      <Tab key={restaurant.id}>{restaurant.category}</Tab>
-    )
-  })
+  const category = states.restaurants
+    .reduce((acc, current) => {
+      const key = acc.find((item) => item.category === current.category);
+      if (!key) {
+        return acc.concat([current]);
+      } else {
+        return acc;
+      }
+    }, [])
+    .map((restaurant) => {
+      return <Tab key={restaurant.id}>{restaurant.category}</Tab>;
+    });
   // const category = states.restaurants.map((type, index) => {
   //   if (index < 4) return <Tab key={type.id}>{type.category}</Tab>;
   // });
@@ -95,9 +89,7 @@ const Dashboard = () => {
         </Tabs>
       </Flex>
 
-
       <Footer />
-
     </Flex>
   );
 };
