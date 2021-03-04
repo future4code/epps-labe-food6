@@ -10,6 +10,7 @@ import LoginPage from "../pages/LoginPage";
 import Profile from "../pages/Profile";
 import Cart from "../pages/Cart";
 import RestaurantProvider from "../providers/restaurantProvider";
+import Error from "../pages/Error";
 
 const Router = () => {
   return (
@@ -40,6 +41,9 @@ const Router = () => {
             </Route>
             <Route exact path={"/feed/details/:restaurantId"}>
               <RestaurantDetails />
+            </Route>
+            <Route>
+              <Error />
             </Route>
           </Switch>
         </BrowserRouter>
