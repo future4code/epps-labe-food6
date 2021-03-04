@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Flex,
   Input,
   InputGroup,
   InputLeftElement,
+  TabPanel,
 } from "@chakra-ui/react";
 import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
@@ -16,17 +17,17 @@ import useAuth from "../hooks/useAuth";
 import RestaurantContext from "../contexts/restaurantContext";
 
 import { useInput } from "../hooks/useInput";
-import styled from 'styled-components'
-
-// const CategoryNav = styled(TabList)`
-
-// `
 
 const Dashboard = () => {
   const { states } = useContext(RestaurantContext);
   useAuth();
 
   const [search, handleSearch] = useInput()
+  const [selectedCategory, setSelectedCategory] = useState("all")
+
+  const categoryHandler = (category) => {
+    setSelectedCategory(category)
+  }
 
   const category = states.restaurants.reduce((acc, current) => {
     const key = acc.find(item => item.category === current.category);
@@ -37,18 +38,17 @@ const Dashboard = () => {
     }
   }, []).map((restaurant) => {
     return (
-      <Tab key={restaurant.id}>{restaurant.category}</Tab>
+      <Tab key={restaurant.id} onClick={() => categoryHandler(restaurant.category)}>{restaurant.category}</Tab>
     )
   })
-  // const category = states.restaurants.map((type, index) => {
-  //   if (index < 4) return <Tab key={type.id}>{type.category}</Tab>;
-  // });
 
-  const restaurantsList = states.restaurants.map((restaurant) => {
-    // .filter => restaurante por tipo ===== array restaurantes
-
-    // .filter => restaurante por nome ===== array restaurantes com nome >por tipo ou não<
-    // console.log(restaurant.id);
+  const restaurantsList = states.restaurants.filter((item) => {
+    if(selectedCategory === "all"){
+      return item
+    }else{
+      return selectedCategory === item.category
+    }
+  }).map((restaurant)=>{
     return (
       <RestaurantCard
         key={restaurant.id}
@@ -63,7 +63,7 @@ const Dashboard = () => {
       />
     );
   });
-
+    
   return (
     <Flex as="main" h="100vh" w="100vw" direction="column" align="center">
       <Flex
@@ -90,12 +90,15 @@ const Dashboard = () => {
         </Box>
 
         <Tabs maxW="100vw">
-          <TabList overflowX="auto">{category && category}</TabList>
-          <TabPanels>{restaurantsList && restaurantsList}</TabPanels>
+          <TabList overflowX="auto">
+            <Tab key={"all"} onClick={() => categoryHandler("all")}>Todos</Tab>
+            {category && category}
+          </TabList>
+          <TabPanels>
+            {restaurantsList && restaurantsList}
+          </TabPanels>
         </Tabs>
       </Flex>
-
-
       <Footer />
 
     </Flex>
