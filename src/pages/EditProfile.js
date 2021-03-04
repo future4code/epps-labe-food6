@@ -1,28 +1,43 @@
-import { Button, Flex, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  useToast,
+} from "@chakra-ui/react";
 import axios from "axios";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import Header from "../components/Header";
 import { base_url } from "../constants";
 import AuthContext from "../contexts/authContext";
+import useAuth from "../hooks/useAuth";
+import { goToProfile } from "../routing/Coordinator";
 
 const EditProfile = () => {
+  useAuth();
   const { states } = useContext(AuthContext);
   const { handleSubmit, register } = useForm();
-
-  useEffect(() => {
-    console.log(states.user);
-  }, []);
+  const history = useHistory();
+  const toast = useToast();
 
   const updateProfile = async (userData) => {
     console.log(userData);
     try {
-      const response = await axios.put(`${base_url}/profile`, userData, {
+      await axios.put(`${base_url}/profile`, userData, {
         headers: {
           auth: states.token,
         },
       });
-      console.log(response.data);
+
+      toast({
+        title: `Sucesso!! Seu perfil foi alterado!`,
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
     } catch (err) {
       throw new Error(err.response.data.message);
     }
@@ -30,6 +45,7 @@ const EditProfile = () => {
 
   const onSubmit = (data) => {
     updateProfile(data);
+    goToProfile(history);
   };
 
   return (
