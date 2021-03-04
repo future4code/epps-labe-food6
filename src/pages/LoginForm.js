@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -11,39 +11,45 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { goHome, goToSignUp } from "../routing/Coordinator";
+import { goToFeed, goToSignAddress, goToSignUp } from "../routing/Coordinator";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { base_url } from "../constants";
+import AuthContext from "../contexts/authContext";
 
 const LoginForm = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const { handleSubmit, register } = useForm();
   const history = useHistory();
+  const { setters } = useContext(AuthContext);
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");
 
-    if (token) {
+    if (!token) {
       history.push("/login");
+    } else {
+      history.push("/feed/restaurants");
     }
   }, [history]);
 
-  const login = (body, history) => {
-    axios
-      .post(
-        `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/login/`,
-        body
-      )
-      .then((response) => {
-        localStorage.setItem("token", response.data.token);
+  const login = async (body, history) => {
+    try {
+      const response = await axios.post(`${base_url}/login`, body);
+      console.log(response.data);
+      localStorage.setItem("token", response.data.token);
 
-        //Colocar para ir pro feed
-        goHome(history);
-      })
-      .catch((error) => {
-        console.log(error.response.data.message);
-      });
+      if (!response.data.user.hasAddress) {
+        goToSignAddress(history);
+      } else {
+        goToFeed(history);
+        setters.setToken(response.data.token);
+        setters.setToken(response.data.user);
+      }
+    } catch (err) {
+      throw new Error(err.message);
+    }
   };
 
   const onSubmitForm = (data) => {
@@ -100,7 +106,6 @@ const LoginForm = () => {
             <InputRightElement width="4.5rem">
               <Button
                 type="submit"
-                fullWidth
                 variant="contained"
                 color="primary"
                 margin="normal"
@@ -126,7 +131,6 @@ const LoginForm = () => {
       <Button
         onClick={() => goToSignUp(history)}
         type={"submit"}
-        fullWidth
         variant={"text"}
         color={"primary"}
         margin={"normal"}

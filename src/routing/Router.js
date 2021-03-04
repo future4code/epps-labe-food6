@@ -9,38 +9,41 @@ import SignAddress from "../pages/SignAddress";
 import LoginPage from "../pages/LoginPage";
 import Profile from "../pages/Profile";
 import Cart from "../pages/Cart";
+import RestaurantProvider from "../providers/restaurantProvider";
 
 const Router = () => {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path={"/signUp"}>
-            <SignUp />
-          </Route>
-          <Route exact path={"/signAddress"}>
-            <SignAddress />
-          </Route>
-          <Route exact path="/login">
-            <LoginPage />
-          </Route>
-          <Route exact path={"/feed/:page"}>
-            <Dashboard />
-          </Route>
-          <Route exact path={"/feed/cart/:userId"}>
-            <Cart />
-          </Route>
-          <Route exact path={"/feed/profile/:userId"}>
-            <Profile />
-          </Route>
-          <Route exact path={"/restaurantdetails"}>
-            <RestaurantDetails />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <RestaurantProvider>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path={"/signUp"}>
+              <SignUp />
+            </Route>
+            <Route exact path={"/signAddress"}>
+              <SignAddress />
+            </Route>
+            <Route exact path="/login">
+              <LoginPage />
+            </Route>
+            <Route exact path={"/feed/restaurants"}>
+              <Dashboard />
+            </Route>
+            <Route exact path={"/feed/cart/:userId"}>
+              <Cart />
+            </Route>
+            <Route exact path={"/feed/profile/:userId"}>
+              <Profile />
+            </Route>
+            <Route exact path={"/feed/details/:restaurantId"}>
+              <RestaurantDetails />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </RestaurantProvider>
     </AuthProvider>
   );
 };

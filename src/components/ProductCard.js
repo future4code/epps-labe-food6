@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Flex,
   Image,
@@ -14,9 +15,8 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import testImage from "../images/arepas_venezuelanas.jpg";
 
-const ProductCard = () => {
+const ProductCard = ({ name, description, price, photoUrl }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Flex
@@ -28,28 +28,30 @@ const ProductCard = () => {
       borderRadius="8px"
       p="0"
     >
-      <Image
-        h="100%"
-        w="35%"
-        paddingRight="1em"
-        src={testImage}
-        alt="Arepa bem gostosa"
-        objectFit="contain"
-        borderRadius="8px 8px 0 0"
-      />
+      <Box w="35%">
+        <Image
+          h="100%"
+          w="100%"
+          paddingRight="1em"
+          src={photoUrl}
+          alt={description}
+          objectFit="cover"
+          borderRadius="8px 8px 0 0"
+        />
+      </Box>
       <Flex
         color="neutralPalette.500"
         flexDirection="column"
         justify="space-between"
       >
         <Text color="greenPalette.400" paddingTop="1em">
-          Arepa
+          {name}
         </Text>
         <Text fontSize="sm" lineHeight="12px">
-          Farinha de milho com recheios diversos
+          {description}
         </Text>
         <Flex justify="space-between">
-          <Text color="black">R$ 20,00</Text>
+          <Text color="black">R$ {price}</Text>
         </Flex>
         <Button
           colorScheme="greenPalette.400"

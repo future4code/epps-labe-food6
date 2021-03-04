@@ -2,10 +2,14 @@ import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-import { goToLogin, goToSignUp } from "../routing/Coordinator";
+import { goToFeed, goToLogin, goToSignUp } from "../routing/Coordinator";
 
 const Home = () => {
   const history = useHistory();
+  const token = localStorage.getItem("token");
+  if (token) {
+    goToFeed(history);
+  }
   return (
     <Flex
       as="main"
