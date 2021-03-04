@@ -36,7 +36,7 @@ const RestaurantProvider = (props) => {
     if (token) {
       getRestaurants();
     }
-  }, []);
+  }, [token, getRestaurants]);
 
   const states = { restaurant, restaurants };
   const setters = { setRestaurant, setRestaurants };
