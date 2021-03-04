@@ -29,6 +29,9 @@ export const goToProfile = (history, id) => {
 export const goToEditProfile = (history, id) => {
   history.push(`/feed/profile/edit/${id}`);
 };
+export const goToEditAddress = (history, id) => {
+  history.push(`/feed/profile/edit/address/${id}`);
+};
 
 export const goToRestaurantDetails = (history, id) => {
   history.push(`/feed/details/${id}`);

@@ -8,11 +8,12 @@ import RestaurantDetails from "../pages/RestaurantDetails";
 import SignAddress from "../pages/SignAddress";
 import LoginPage from "../pages/LoginPage";
 import Profile from "../pages/Profile";
+import EditAddress from "../pages/EditAddress";
+import EditProfile from "../pages/EditProfile";
 import Cart from "../pages/Cart";
 import RestaurantProvider from "../providers/restaurantProvider";
 
 import Error from "../pages/Error";
-import EditProfile from "../pages/EditProfile";
 
 const Router = () => {
   return (
@@ -46,6 +47,9 @@ const Router = () => {
             </Route>
             <Route exact path={"/feed/profile/edit/:userId"}>
               <EditProfile />
+            </Route>
+            <Route exact path={"/feed/profile/edit/address/:userId"}>
+              <EditAddress />
             </Route>
             <Route>
               <Error />
