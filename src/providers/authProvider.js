@@ -6,6 +6,7 @@ import { base_url } from "../constants";
 
 const AuthProvider = (props) => {
   const [user, setUser] = useState({});
+  const [address, setAddress] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   const getUserByToken = async () => {
@@ -15,8 +16,21 @@ const AuthProvider = (props) => {
           auth: token,
         },
       });
-      console.log(response.data);
+      console.log("Current User", response.data.user);
       setUser(response.data.user);
+    } catch (err) {
+      throw new Error(err.response.data.message);
+    }
+  };
+
+  const getAddress = async () => {
+    try {
+      const response = await axios.get(`${base_url}/profile/address`, {
+        headers: {
+          auth: states.token,
+        },
+      });
+      setAddress(response.data.address);
     } catch (err) {
       throw new Error(err.response.data.message);
     }
@@ -26,14 +40,15 @@ const AuthProvider = (props) => {
     setToken(localStorage.getItem("token"));
     if (token) {
       getUserByToken();
+      getAddress();
     }
   }, [token]);
 
-  const states = { user, token };
+  const states = { user, token, address };
 
-  const requests = { getUserByToken };
+  const requests = { getUserByToken, getAddress };
 
-  const setters = { setUser, setToken };
+  const setters = { setUser, setToken, setAddress };
 
   const data = { states, requests, setters };
 

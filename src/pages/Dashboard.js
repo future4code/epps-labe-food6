@@ -14,7 +14,6 @@ import RestaurantCard from "../components/RestaurantCard";
 import Footer from "../components/Footer";
 import useAuth from "../hooks/useAuth";
 import RestaurantContext from "../contexts/restaurantContext";
-
 import { useInput } from "../hooks/useInput";
 
 const Dashboard = () => {
@@ -54,6 +53,7 @@ const Dashboard = () => {
       return item
     }
   }).map((restaurant) => {
+
     return (
       <RestaurantCard
         key={restaurant.id}
@@ -73,7 +73,7 @@ const Dashboard = () => {
     <Flex as="main" h="100vh" w="100vw" direction="column" align="center">
       <Flex
         as="section"
-        w="100%"
+        maxW="100vw"
         direction="column"
         align="center"
         paddingBottom="80px"
@@ -104,8 +104,8 @@ const Dashboard = () => {
           </TabPanels>
         </Tabs>
       </Flex>
-      <Footer />
 
+      <Footer />
     </Flex>
   );
 };
