@@ -20,21 +20,21 @@ import { useInput } from "../hooks/useInput";
 const Dashboard = () => {
   const { states } = useContext(RestaurantContext);
   useAuth();
-  
-  const [search, handleSearch] = useInput()
 
-//   const category = arrFood.reduce((acc, current) => {
-//     const key = acc.find(item => item.category === current.category);
-//     if (!key) {
-//       return acc.concat([current])
-//     } else {
-//       return acc
-//     }
-//   }, []).map((restaurant) => {
-//     return (
-//       <Tab key={restaurant.id}>{restaurant.category}</Tab>
-//     )
-//   })
+  const [search, handleSearch] = useInput();
+
+  //   const category = arrFood.reduce((acc, current) => {
+  //     const key = acc.find(item => item.category === current.category);
+  //     if (!key) {
+  //       return acc.concat([current])
+  //     } else {
+  //       return acc
+  //     }
+  //   }, []).map((restaurant) => {
+  //     return (
+  //       <Tab key={restaurant.id}>{restaurant.category}</Tab>
+  //     )
+  //   })
   const category = states.restaurants.map((type, index) => {
     if (index < 4) return <Tab key={type.id}>{type.category}</Tab>;
   });
@@ -43,7 +43,6 @@ const Dashboard = () => {
     // .filter => restaurante por tipo ===== array restaurantes
 
     // .filter => restaurante por nome ===== array restaurantes com nome >por tipo ou não<
-    console.log(restaurant.id);
     return (
       <RestaurantCard
         key={restaurant.id}
@@ -70,18 +69,18 @@ const Dashboard = () => {
       >
         <Header>FutureEats</Header>
 
-          <Box paddingX="4" w="100%">
+        <Box paddingX="4" w="100%">
           <InputGroup marginTop="2">
-          <InputLeftElement
-            pointerEvents="none"
-            children={<Search2Icon color="gray.300" />}
-          />
-          <Input
-            value={search}
-            onChange={handleSearch}
-            placeholder="Restaurante"
-          />
-        </InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              children={<Search2Icon color="gray.300" />}
+            />
+            <Input
+              value={search}
+              onChange={handleSearch}
+              placeholder="Restaurante"
+            />
+          </InputGroup>
         </Box>
 
         <Tabs>
@@ -90,9 +89,7 @@ const Dashboard = () => {
         </Tabs>
       </Flex>
 
-
       <Footer />
-
     </Flex>
   );
 };
