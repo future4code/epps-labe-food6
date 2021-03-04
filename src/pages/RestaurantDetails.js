@@ -21,9 +21,27 @@ const RestaurantDetails = () => {
   return (
     <Flex flexDirection="column">
       <Header>Restaurante</Header>
-      <RestaurantDetailsCard />
+      <RestaurantDetailsCard
+        name={states.restaurant.name}
+        type={states.restaurant.type}
+        deliveryTime={states.restaurant.deliveryTime}
+        logoUrl={states.restaurant.logoUrl}
+        shipping={states.restaurant.shipping}
+        address={states.restaurant.address}
+      />
       <Category />
-      <ProductCard />
+      {states.restaurant.products &&
+        states.restaurant.products.map((product) => {
+          return (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              description={product.description}
+              price={product.price}
+              photoUrl={product.photoUrl}
+            />
+          );
+        })}
     </Flex>
   );
 };

@@ -26,6 +26,7 @@ const RestaurantProvider = (props) => {
         { headers: { auth: token } }
       );
       console.log(response.data);
+      setRestaurant(response.data.restaurant);
     } catch (err) {
       throw new Error(err.response.data.message);
     }
