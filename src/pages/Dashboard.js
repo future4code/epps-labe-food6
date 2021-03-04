@@ -6,13 +6,12 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-
 } from "@chakra-ui/react";
 import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import RestaurantCard from "../components/RestaurantCard";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 import { useInput } from "../hooks/useInput";
 
 const arrFood = [
@@ -69,9 +68,18 @@ const arrFood = [
 const Dashboard = () => {
   const [search, handleSearch] = useInput()
 
-  const category = arrFood.map((type) => {
-    return <Tab key={type.id}>{type.category}</Tab>;
-  });
+  const category = arrFood.reduce((acc, current) => {
+    const key = acc.find(item => item.category === current.category);
+    if (!key) {
+      return acc.concat([current])
+    } else {
+      return acc
+    }
+  }, []).map((restaurant) => {
+    return (
+      <Tab key={restaurant.id}>{restaurant.category}</Tab>
+    )
+  })
 
   const restaurantsList = arrFood.map((restaurant) => {
     // switch (restaurant.category) {
