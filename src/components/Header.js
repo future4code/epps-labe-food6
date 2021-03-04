@@ -25,6 +25,7 @@ const Header = (props) => {
     return pathUrl;
   };
 
+  // TO DO: BUTTONS ON EACH PAGE
   return (
     <Flex
       as="header"

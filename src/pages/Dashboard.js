@@ -34,15 +34,11 @@ const Dashboard = () => {
     .map((restaurant) => {
       return <Tab key={restaurant.id}>{restaurant.category}</Tab>;
     });
-  // const category = states.restaurants.map((type, index) => {
-  //   if (index < 4) return <Tab key={type.id}>{type.category}</Tab>;
-  // });
 
   const restaurantsList = states.restaurants.map((restaurant) => {
     // .filter => restaurante por tipo ===== array restaurantes
 
     // .filter => restaurante por nome ===== array restaurantes com nome >por tipo ou não<
-    // console.log(restaurant.id);
     return (
       <RestaurantCard
         key={restaurant.id}
@@ -62,7 +58,7 @@ const Dashboard = () => {
     <Flex as="main" h="100vh" w="100vw" direction="column" align="center">
       <Flex
         as="section"
-        w="100%"
+        maxW="100vw"
         direction="column"
         align="center"
         paddingBottom="80px"
@@ -84,8 +80,12 @@ const Dashboard = () => {
         </Box>
 
         <Tabs maxW="100vw">
-          <TabList overflowX="auto">{category && category}</TabList>
-          <TabPanels>{restaurantsList && restaurantsList}</TabPanels>
+          <TabList overflowX="auto" maxW="100vw">
+            {category && category}
+          </TabList>
+          <TabPanels maxW="100vw">
+            {restaurantsList && restaurantsList}
+          </TabPanels>
         </Tabs>
       </Flex>
 

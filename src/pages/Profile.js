@@ -7,16 +7,25 @@ import {
   IconButton,
   Text,
 } from "@chakra-ui/react";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import AuthContext from "../contexts/authContext";
 import OrderHistoryCard from "../components/OrderHistoryCard";
 import useAuth from "../hooks/useAuth";
+import { goToEditAddress, goToEditProfile } from "../routing/Coordinator";
+import { useHistory } from "react-router-dom";
 
 const Profile = () => {
   useAuth();
-  const { states } = useContext(AuthContext);
+  const { states, requests } = useContext(AuthContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (states.token) {
+      requests.getUserByToken(states.token);
+    }
+  }, [states.token]);
 
   return (
     <Flex as="main" w="100vw" h="100vh" direction="column" align="center">
@@ -28,7 +37,12 @@ const Profile = () => {
             <Text>{states.user && states.user.email}</Text>
             <Text>{states.user && states.user.cpf}</Text>
           </Box>
-          <IconButton icon={<EditIcon />} variant="ghost" fontSize="26px" />
+          <IconButton
+            icon={<EditIcon />}
+            variant="ghost"
+            fontSize="26px"
+            onClick={() => goToEditProfile(history, states.user.id)}
+          />
         </Flex>
         <Flex as="section" w="100%" bgColor="#ddd" align="center">
           <Box w="100%" p="4">
@@ -37,7 +51,12 @@ const Profile = () => {
             </Heading>
             <Text fontSize="lg">{states.user && states.user.address}</Text>
           </Box>
-          <IconButton icon={<EditIcon />} variant="ghost" fontSize="26px" />
+          <IconButton
+            icon={<EditIcon />}
+            variant="ghost"
+            fontSize="26px"
+            onClick={() => goToEditAddress(history, states.user.id)}
+          />
         </Flex>
         <Flex padding="4" direction="column">
           <Text fontSize="xl">Histórico de Pedidos</Text>
