@@ -28,7 +28,7 @@ const AuthProvider = (props) => {
     try {
       const response = await axios.get(`${base_url}/profile/address`, {
         headers: {
-          auth: authStates.token,
+          auth: token,
         },
       });
       setAddress(response.data.address);
@@ -41,6 +41,8 @@ const AuthProvider = (props) => {
     setToken(localStorage.getItem("token"));
     if (token) {
       getUserByToken();
+    }
+    if (authStates.user.hasAddress) {
       getAddress();
     }
   }, [token]);
