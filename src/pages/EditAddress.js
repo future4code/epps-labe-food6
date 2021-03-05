@@ -19,21 +19,21 @@ import { goToProfile } from "../routing/Coordinator";
 
 const EditAddress = () => {
   useAuth();
-  const { states, requests } = useContext(AuthContext);
+  const { authStates, authRequests } = useContext(AuthContext);
   const { handleSubmit, register } = useForm();
   const toast = useToast();
 
   const history = useHistory();
 
   useEffect(() => {
-    requests.getAddress();
-  }, [requests]);
+    authRequests.getAddress();
+  }, [authRequests]);
 
   const updateAddress = async (userAddress) => {
     try {
       const response = await axios.put(`${base_url}/address`, userAddress, {
         headers: {
-          auth: states.token,
+          auth: authStates.token,
         },
       });
 
@@ -78,8 +78,12 @@ const EditAddress = () => {
                 Logradouro
               </FormLabel>
               <Input
-                placeholder={states.address.street && states.address.street}
-                defaultValue={states.address.street && states.address.street}
+                placeholder={
+                  authStates.address.street && authStates.address.street
+                }
+                defaultValue={
+                  authStates.address.street && authStates.address.street
+                }
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
@@ -93,8 +97,12 @@ const EditAddress = () => {
                 Número
               </FormLabel>
               <Input
-                placeholder={states.address.number && states.address.number}
-                defaultValue={states.address.number && states.address.number}
+                placeholder={
+                  authStates.address.number && authStates.address.number
+                }
+                defaultValue={
+                  authStates.address.number && authStates.address.number
+                }
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
@@ -109,10 +117,10 @@ const EditAddress = () => {
               </FormLabel>
               <Input
                 placeholder={
-                  states.address.complement && states.address.complement
+                  authStates.address.complement && authStates.address.complement
                 }
                 defaultValue={
-                  states.address.complement && states.address.complement
+                  authStates.address.complement && authStates.address.complement
                 }
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
@@ -128,10 +136,12 @@ const EditAddress = () => {
               <Input
                 type="text"
                 placeholder={
-                  states.address.neighbourhood && states.address.neighbourhood
+                  authStates.address.neighbourhood &&
+                  authStates.address.neighbourhood
                 }
                 defaultValue={
-                  states.address.neighbourhood && states.address.neighbourhood
+                  authStates.address.neighbourhood &&
+                  authStates.address.neighbourhood
                 }
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
@@ -146,8 +156,10 @@ const EditAddress = () => {
               </FormLabel>
               <Input
                 type="text"
-                placeholder={states.address.city && states.address.city}
-                defaultValue={states.address.city && states.address.city}
+                placeholder={authStates.address.city && authStates.address.city}
+                defaultValue={
+                  authStates.address.city && authStates.address.city
+                }
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"
@@ -161,8 +173,12 @@ const EditAddress = () => {
               </FormLabel>
               <Input
                 type="text"
-                placeholder={states.address.state && states.address.state}
-                defaultValue={states.address.state && states.address.state}
+                placeholder={
+                  authStates.address.state && authStates.address.state
+                }
+                defaultValue={
+                  authStates.address.state && authStates.address.state
+                }
                 color="neutralPalette.900"
                 borderColor="neutralPalette.500"
                 size="lg"

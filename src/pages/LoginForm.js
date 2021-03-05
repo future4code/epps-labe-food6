@@ -22,7 +22,7 @@ const LoginForm = () => {
   const handleClick = () => setShow(!show);
   const { handleSubmit, register } = useForm();
   const history = useHistory();
-  const { setters } = useContext(AuthContext);
+  const { authSetters } = useContext(AuthContext);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -35,15 +35,15 @@ const LoginForm = () => {
   const login = async (body, history) => {
     try {
       const response = await axios.post(`${base_url}/login`, body);
-      console.log(response.data);
       localStorage.setItem("token", response.data.token);
+      console.log(response.data);
 
+      authSetters.setToken(response.data.token);
+      authSetters.setToken(response.data.user);
       if (!response.data.user.hasAddress) {
         goToSignAddress(history);
       } else {
         goToFeed(history);
-        setters.setToken(response.data.token);
-        setters.setToken(response.data.user);
       }
     } catch (err) {
       throw new Error(err.message);

@@ -13,6 +13,7 @@ const RestaurantProvider = (props) => {
       const response = await axios.get(`${base_url}/restaurants`, {
         headers: { auth: token },
       });
+      console.log(response.data.restaurants);
       setRestaurants(response.data.restaurants);
     } catch (err) {
       throw new Error(err.response.data.message);
@@ -25,7 +26,7 @@ const RestaurantProvider = (props) => {
         `${base_url}/restaurants/${restaurantId}`,
         { headers: { auth: token } }
       );
-      console.log(response.data);
+      console.log("Current Restaurant", response.data.restaurant);
       setRestaurant(response.data.restaurant);
     } catch (err) {
       throw new Error(err.response.data.message);
@@ -36,12 +37,12 @@ const RestaurantProvider = (props) => {
     if (token) {
       getRestaurants();
     }
-  }, [token, getRestaurants]);
+  }, [token]);
 
-  const states = { restaurant, restaurants };
-  const setters = { setRestaurant, setRestaurants };
-  const requests = { getRestaurants, getRestaurantById };
-  const data = { states, setters, requests };
+  const restaurantStates = { restaurant, restaurants };
+  const restaurantSetters = { setRestaurant, setRestaurants };
+  const restaurantRequests = { getRestaurants, getRestaurantById };
+  const data = { restaurantStates, restaurantSetters, restaurantRequests };
 
   return (
     <RestaurantContext.Provider value={data}>

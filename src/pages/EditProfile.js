@@ -18,17 +18,16 @@ import { goToProfile } from "../routing/Coordinator";
 
 const EditProfile = () => {
   useAuth();
-  const { states } = useContext(AuthContext);
+  const { authStates } = useContext(AuthContext);
   const { handleSubmit, register } = useForm();
   const history = useHistory();
   const toast = useToast();
 
   const updateProfile = async (userData) => {
-    console.log(userData);
     try {
       await axios.put(`${base_url}/profile`, userData, {
         headers: {
-          auth: states.token,
+          auth: authStates.token,
         },
       });
 
@@ -61,15 +60,23 @@ const EditProfile = () => {
       >
         <FormControl paddingY="2">
           <FormLabel>Nome</FormLabel>
-          <Input name="name" defaultValue={states.user.name} ref={register} />
+          <Input
+            name="name"
+            defaultValue={authStates.user.name}
+            ref={register}
+          />
         </FormControl>
         <FormControl paddingY="2">
           <FormLabel>Email</FormLabel>
-          <Input name="email" defaultValue={states.user.email} ref={register} />
+          <Input
+            name="email"
+            defaultValue={authStates.user.email}
+            ref={register}
+          />
         </FormControl>
         <FormControl paddingY="2">
           <FormLabel>CPF</FormLabel>
-          <Input name="cpf" defaultValue={states.user.cpf} ref={register} />
+          <Input name="cpf" defaultValue={authStates.user.cpf} ref={register} />
         </FormControl>
         <Button type="Submit" marginY="4">
           Salvar
