@@ -4,7 +4,8 @@ import {
   Flex,
   Input,
   InputGroup,
-  InputLeftElement
+  InputLeftElement,
+  Text
 } from "@chakra-ui/react";
 import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
@@ -37,9 +38,9 @@ const Dashboard = () => {
       }
     }, [])
     .map((restaurant) => {
-      return <Tab key={restaurant.id} onClick={()=>categoryHandler(restaurant.category)}>{restaurant.category}</Tab>;
+      return <Tab key={restaurant.id} onClick={() => categoryHandler(restaurant.category)}>{restaurant.category}</Tab>;
     });
-  
+
   const restaurantsList = restaurantStates.restaurants.filter((item) => {
     if (selectedCategory === "all") {
       return item
@@ -49,7 +50,7 @@ const Dashboard = () => {
   }).filter((item) => {
     if (!search) {
       return item
-    }else if(item.name.toLowerCase().includes(search)){
+    } else if (item.name.toLowerCase().includes(search)) {
       return item
     }
   }).map((restaurant) => {
@@ -96,10 +97,10 @@ const Dashboard = () => {
         <Tabs maxW="100vw">
           <TabList overflowX="auto">
             <Tab key={"all"} onClick={() => categoryHandler("all")}>Todos</Tab>
-            {category && category}
+            {restaurantStates && category}
           </TabList>
           <TabPanels>
-            {restaurantsList && restaurantsList}
+            {restaurantStates && restaurantsList}
           </TabPanels>
         </Tabs>
       </Flex>

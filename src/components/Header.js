@@ -1,31 +1,33 @@
 import { Flex, IconButton, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import { goHome } from "../routing/Coordinator";
+import { goBackTo, goHome } from "../routing/Coordinator";
 import { useHistory, useParams } from "react-router-dom";
 
 const Header = (props) => {
   const history = useHistory();
   const params = useParams();
+  
+  console.log(params)
 
-  const path = (pathParams) => {
-    pathParams = params;
-    console.log(pathParams);
-    let pathUrl = pathParams;
-    if (
-      pathParams === "restaurants" ||
-      pathParams === "profile" ||
-      pathParams === "cart"
-    ) {
-      pathUrl = pathParams;
-    }
+  // const path = (pathParams) => {
+  //   pathParams = params;
+  //   console.log(pathParams);
+  //   let pathUrl = pathParams;
+  //   if (
+  //     pathParams === "restaurants" ||
+  //     pathParams === "profile" ||
+  //     pathParams === "cart"
+  //   ) {
+  //     pathUrl = pathParams;
+  //   }
 
-    console.log(pathUrl);
-    return pathUrl;
-  };
+  //   console.log(pathUrl);
+  //   return pathUrl;
+  // };
 
-  // TO DO: BUTTONS ON EACH PAGE
+   // TO DO: BUTTONS ON EACH PAGE
   return (
     <Flex
       as="header"
@@ -35,7 +37,7 @@ const Header = (props) => {
       borderBottom="1px lightgray solid"
       minH="50px"
     >
-      {path && path ? (
+      { params && (!params.restaurantId && !params.userId) ? (
         <Text w="100%" textAlign="center" fontSize="22px">
           {props.children}
         </Text>

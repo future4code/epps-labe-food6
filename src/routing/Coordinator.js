@@ -36,3 +36,7 @@ export const goToEditAddress = (history, id) => {
 export const goToRestaurantDetails = (history, id) => {
   history.push(`/feed/details/${id}`);
 };
+
+export const goBackTo = (history) => { 
+  history.goBack()
+}
