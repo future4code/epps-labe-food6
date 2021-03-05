@@ -1,6 +1,7 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import CartContext from "../contexts/cartContext";
 import { goToRestaurantDetails } from "../routing/Coordinator";
 
 const RestaurantCard = ({
@@ -15,6 +16,7 @@ const RestaurantCard = ({
   logoUrl,
 }) => {
   const history = useHistory();
+
   return (
     <Flex
       as="article"

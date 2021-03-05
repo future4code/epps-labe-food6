@@ -9,18 +9,17 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import Header from "../components/Header";
 import { base_url } from "../constants";
-// import AuthContext from "../contexts/authContext";
+import AuthContext from "../contexts/authContext";
 import { goToLogin, goToSignAddress } from "../routing/Coordinator";
 
 const SignUp = () => {
   const token = localStorage.getItem("token");
-
-  // const { setters } = useContext(AuthContext);
+  const { authSetters } = useContext(AuthContext);
   const { handleSubmit, errors, register } = useForm();
   const toast = useToast();
   const history = useHistory();
@@ -32,7 +31,6 @@ const SignUp = () => {
   }, [history, token]);
 
   const createUser = async (user) => {
-    console.log("createUser data input", user);
     try {
       const response = await axios.post(`${base_url}/signup`, user);
       toast({
@@ -42,12 +40,11 @@ const SignUp = () => {
         duration: 5000,
         isClosable: true,
       });
-      const token = response.data.token;
-      console.log(token);
       localStorage.setItem("token", token);
-      console.log(response.data.user);
-      // setters.setToken(response.data.token);
-      // setters.setUser(response.data.user);
+
+      authSetters.setToken(response.data.token);
+      authSetters.setUser(response.data.user);
+
       if (!response.data.user.hasAddress) {
         goToSignAddress(history);
       }
@@ -71,13 +68,11 @@ const SignUp = () => {
           isClosable: true,
         });
       }
-      // throw new Error(err.response.data.message);
+      throw new Error(err.response.data.message);
     }
   };
 
   const onSubmit = (data) => {
-    console.log("form data", data);
-
     if (data.password !== data.confirmPassword) {
       console.log("passwords don't match");
     } else {
@@ -88,7 +83,6 @@ const SignUp = () => {
         password: data.password,
       };
 
-      console.log(userData);
       createUser(userData);
     }
     goToSignAddress(history);

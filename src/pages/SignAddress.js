@@ -20,7 +20,7 @@ import { goToFeed } from "../routing/Coordinator";
 // import { goToLogin, goToSignAddress } from "../routing/Coordinator";
 
 const SignAddress = () => {
-  const { setters } = useContext(AuthContext);
+  const { authSetters } = useContext(AuthContext);
   const { handleSubmit, errors, register } = useForm();
   const history = useHistory();
   const toast = useToast();
@@ -44,8 +44,8 @@ const SignAddress = () => {
       });
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
-      setters.setToken(response.data.token);
-      setters.setToken(response.data.user);
+      authSetters.setToken(response.data.token);
+      authSetters.setToken(response.data.user);
       goToFeed(history);
     } catch (err) {
       throw new Error(err.response.data.message);

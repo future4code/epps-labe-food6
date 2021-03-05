@@ -17,7 +17,7 @@ import RestaurantContext from "../contexts/restaurantContext";
 import { useInput } from "../hooks/useInput";
 
 const Dashboard = () => {
-  const { states } = useContext(RestaurantContext);
+  const { restaurantStates } = useContext(RestaurantContext);
   useAuth();
 
   const [search, handleSearch] = useInput()
@@ -27,20 +27,20 @@ const Dashboard = () => {
     setSelectedCategory(category)
   }
 
-  const category = states.restaurants.reduce((acc, current) => {
-    const key = acc.find(item => item.category === current.category);
-    if (!key) {
-      return acc.concat([current])
-    } else {
-      return acc
-    }
-  }, []).map((restaurant) => {
-    return (
-      <Tab key={restaurant.id} onClick={() => categoryHandler(restaurant.category)}>{restaurant.category}</Tab>
-    )
-  })
-
-  const restaurantsList = states.restaurants.filter((item) => {
+  const category = restaurantStates.restaurants
+    .reduce((acc, current) => {
+      const key = acc.find((item) => item.category === current.category);
+      if (!key) {
+        return acc.concat([current]);
+      } else {
+        return acc;
+      }
+    }, [])
+    .map((restaurant) => {
+      return <Tab key={restaurant.id}>{restaurant.category}</Tab>;
+    });
+  
+  const restaurantsList = restaurantStates.restaurants.filter((item) => {
     if (selectedCategory === "all") {
       return item
     } else {
@@ -53,7 +53,6 @@ const Dashboard = () => {
       return item
     }
   }).map((restaurant) => {
-
     return (
       <RestaurantCard
         key={restaurant.id}
