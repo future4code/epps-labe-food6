@@ -37,7 +37,7 @@ const Dashboard = () => {
       }
     }, [])
     .map((restaurant) => {
-      return <Tab key={restaurant.id}>{restaurant.category}</Tab>;
+      return <Tab key={restaurant.id} onClick={()=>categoryHandler(restaurant.category)}>{restaurant.category}</Tab>;
     });
   
   const restaurantsList = restaurantStates.restaurants.filter((item) => {
