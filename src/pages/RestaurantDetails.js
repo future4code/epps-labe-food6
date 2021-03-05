@@ -36,7 +36,7 @@ const RestaurantDetails = () => {
         restaurantStates.restaurant.products.map((product) => {
           return (
             <ProductCard
-              key={product.id}
+              idToAdd={product.id}
               name={product.name}
               description={product.description}
               price={product.price}

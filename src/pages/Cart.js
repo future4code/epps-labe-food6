@@ -11,16 +11,17 @@ import {
 import React, { useContext, useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import ProductOnCart from "../components/ProductOnCart";
+import OrderStatus from "../components/OrderStatus";
 import AuthContext from "../contexts/authContext";
 import CartContext from "../contexts/cartContext";
-import RestaurantContext from "../contexts/restaurantContext";
 import useAuth from "../hooks/useAuth";
 
 const Cart = () => {
   useAuth();
   const { authStates } = useContext(AuthContext);
   const { cartStates } = useContext(CartContext);
-  const { restaurantStates } = useContext(RestaurantContext);
+
   const toast = useToast();
 
   useEffect(() => {
@@ -58,9 +59,24 @@ const Cart = () => {
         {/* Items */}
         <Flex as="section" w="100%" h="100%" p="2" justify="center">
           {/* Array de cards */}
-          <Text p="4" fontSize="xl">
-            Seu carrinho está vazio.
-          </Text>
+          {cartStates.products[0] ? (
+            cartStates.products.map((product) => {
+              console.log("dentro do map", product);
+              return (
+                <ProductOnCart
+                  key={product.id}
+                  name={product.name}
+                  description={product.description}
+                  price={product.price}
+                  photoUrl={product.photoUrl}
+                />
+              );
+            })
+          ) : (
+            <Text p="4" fontSize="xl">
+              Seu carrinho está vazio.
+            </Text>
+          )}
         </Flex>
 
         {/* Shipping + Subtotal */}
@@ -119,6 +135,7 @@ const Cart = () => {
           </Button>
         </Flex>
       </Flex>
+      <OrderStatus />
       <Footer />
     </Flex>
   );

@@ -40,7 +40,7 @@ const SignUp = () => {
         duration: 5000,
         isClosable: true,
       });
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", response.data.token);
 
       authSetters.setToken(response.data.token);
       authSetters.setUser(response.data.user);

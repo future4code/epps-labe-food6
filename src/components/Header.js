@@ -9,8 +9,6 @@ const Header = (props) => {
   const history = useHistory();
   const params = useParams();
   
-  console.log(params)
-
   // const path = (pathParams) => {
   //   pathParams = params;
   //   console.log(pathParams);
