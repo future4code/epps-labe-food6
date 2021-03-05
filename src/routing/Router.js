@@ -14,7 +14,7 @@ import Cart from "../pages/Cart";
 import RestaurantProvider from "../providers/restaurantProvider";
 
 import Error from "../pages/Error";
-import CartProvider from "../providers/CartProvider";
+import CartProvider from "../providers/cartProvider";
 
 const Router = () => {
   return (
