@@ -11,6 +11,7 @@ import {
 import React, { useContext, useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import OrderStatus from "../components/OrderStatus";
 import AuthContext from "../contexts/authContext";
 import CartContext from "../contexts/cartContext";
 import RestaurantContext from "../contexts/restaurantContext";
@@ -119,6 +120,7 @@ const Cart = () => {
           </Button>
         </Flex>
       </Flex>
+      <OrderStatus />
       <Footer />
     </Flex>
   );

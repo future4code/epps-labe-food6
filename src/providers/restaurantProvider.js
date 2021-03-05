@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { base_url } from "../constants";
+import AuthContext from "../contexts/authContext";
 import RestaurantContext from "../contexts/restaurantContext";
 
 const RestaurantProvider = (props) => {
   const [restaurant, setRestaurant] = useState({});
   const [restaurants, setRestaurants] = useState([]);
+  const { authStates } = useContext(AuthContext);
   const token = localStorage.getItem("token");
 
   const getRestaurants = async () => {
@@ -34,7 +36,7 @@ const RestaurantProvider = (props) => {
   };
 
   useEffect(() => {
-    if (token) {
+    if (token && authStates.user.hasAddress) {
       getRestaurants();
     }
   }, [token]);
