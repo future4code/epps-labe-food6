@@ -18,7 +18,7 @@ import { useInput } from "../hooks/useInput";
 import AuthContext from "../contexts/authContext";
 
 const Dashboard = () => {
-  const { authStates } = useContext(AuthContext);
+  const { authStates, authRequests } = useContext(AuthContext);
   const { restaurantStates, restaurantRequests } = useContext(
     RestaurantContext
   );
@@ -29,6 +29,7 @@ const Dashboard = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   useEffect(() => {
+    authRequests.getUserByToken();
     if (token && authStates.user.hasAddress) {
       restaurantRequests.getRestaurants();
     }
