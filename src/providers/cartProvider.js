@@ -10,7 +10,10 @@ const CartProvider = (props) => {
   const [products, setProducts] = useState([]);
   const [order, setOrder] = useState({});
   const [ordersHistory, setOrdersHistory] = useState([]);
+  const [selectQuantity, setSelectQuantity] = useState(0);
   const { authStates } = useContext(AuthContext);
+
+  console.log("noCartProvider", products);
 
   const getActiveOrder = async () => {
     try {
@@ -34,8 +37,13 @@ const CartProvider = (props) => {
     }
   }, []);
 
-  const cartStates = { products, order, ordersHistory };
-  const cartSetters = { setProducts, setOrder, setOrdersHistory };
+  const cartStates = { products, order, ordersHistory, selectQuantity };
+  const cartSetters = {
+    setProducts,
+    setOrder,
+    setOrdersHistory,
+    setSelectQuantity,
+  };
   const cartRequests = { getActiveOrder };
 
   const data = { cartStates, cartSetters, cartRequests };

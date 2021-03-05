@@ -11,6 +11,7 @@ import {
 import React, { useContext, useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import ProductOnCart from "../components/ProductOnCart";
 import AuthContext from "../contexts/authContext";
 import CartContext from "../contexts/cartContext";
 import RestaurantContext from "../contexts/restaurantContext";
@@ -58,9 +59,15 @@ const Cart = () => {
         {/* Items */}
         <Flex as="section" w="100%" h="100%" p="2" justify="center">
           {/* Array de cards */}
-          <Text p="4" fontSize="xl">
-            Seu carrinho está vazio.
-          </Text>
+          {cartStates.products[0] ? (
+            cartStates.products.map((product) => {
+              return <ProductOnCart />;
+            })
+          ) : (
+            <Text p="4" fontSize="xl">
+              Seu carrinho está vazio.
+            </Text>
+          )}
         </Flex>
 
         {/* Shipping + Subtotal */}

@@ -13,11 +13,32 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext } from "react";
+import CartContext from "../contexts/cartContext";
 
-const ProductCard = ({ name, description, price, photoUrl }) => {
+const ProductCard = ({ idToAdd, name, description, price, photoUrl }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { cartStates, cartSetters } = useContext(CartContext);
 
+  const onChangeSelect = (event) => {
+    cartSetters.setSelectQuantity(event.target.value);
+  };
+
+  const addProductToCart = (productId, quantity) => {
+    if (cartStates.selectQuantity) {
+      const newProduct = {
+        id: productId,
+        quantity: cartStates.selectQuantity,
+      };
+      let newCart = [...cartStates.products, newProduct];
+      cartSetters.setProducts(newCart);
+
+      alert(`Foi adicionado ${newProduct.quantity} ao carrinho`);
+    } else {
+      alert("Por favor selecione a quantidade");
+    }
+  };
+  console.log(cartStates.products);
   return (
     <Flex
       as="article"
@@ -66,22 +87,36 @@ const ProductCard = ({ name, description, price, photoUrl }) => {
           <ModalHeader marginTop="1em">Quantidade:</ModalHeader>
           <ModalCloseButton marginTop="0.5em" />
           <ModalBody>
-            <Select color="neutralPalette.900" w="100%">
-              <option>0</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
+            <Select
+              name="quantity"
+              id="quantity"
+              color="neutralPalette.900"
+              w="100%"
+              onChange={onChangeSelect}
+              isRequired
+            >
+              <option isDisabled>Selecione:</option>
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+              <option value={6}>6</option>
+              <option value={7}>7</option>
+              <option value={8}>8</option>
+              <option value={9}>9</option>
+              <option value={10}>10</option>
             </Select>
           </ModalBody>
           <ModalFooter display="flex" justify="center">
-            <Button variant="outline" size="sm" mx="auto" my="1em">
+            <Button
+              variant="outline"
+              size="sm"
+              mx="auto"
+              my="1em"
+              type="submit"
+              onClick={() => addProductToCart(idToAdd)}
+            >
               Adicionar ao carrinho
             </Button>
           </ModalFooter>
