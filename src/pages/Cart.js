@@ -57,7 +57,14 @@ const Cart = () => {
         </Flex>
 
         {/* Items */}
-        <Flex as="section" w="100%" h="100%" p="2" justify="center">
+        <Flex
+          as="section"
+          w="100%"
+          h="100%"
+          p="2"
+          direction="column"
+          justify="center"
+        >
           {/* Array de cards */}
           {cartStates.products[0] ? (
             cartStates.products.map((product) => {
