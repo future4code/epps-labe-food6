@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Flex,
   Input,
   InputGroup,
-  InputLeftElement,
+  InputLeftElement
 } from "@chakra-ui/react";
 import Header from "../components/Header";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
@@ -20,7 +20,12 @@ const Dashboard = () => {
   const { restaurantStates } = useContext(RestaurantContext);
   useAuth();
 
-  const [search, handleSearch] = useInput();
+  const [search, handleSearch] = useInput()
+  const [selectedCategory, setSelectedCategory] = useState("all")
+
+  const categoryHandler = (category) => {
+    setSelectedCategory(category)
+  }
 
   const category = restaurantStates.restaurants
     .reduce((acc, current) => {
@@ -34,11 +39,20 @@ const Dashboard = () => {
     .map((restaurant) => {
       return <Tab key={restaurant.id}>{restaurant.category}</Tab>;
     });
-
-  const restaurantsList = restaurantStates.restaurants.map((restaurant) => {
-    // .filter => restaurante por tipo ===== array restaurantes
-
-    // .filter => restaurante por nome ===== array restaurantes com nome >por tipo ou não<
+  
+  const restaurantsList = restaurantStates.restaurants.filter((item) => {
+    if (selectedCategory === "all") {
+      return item
+    } else {
+      return selectedCategory === item.category
+    }
+  }).filter((item) => {
+    if (!search) {
+      return item
+    }else if(item.name.toLowerCase().includes(search)){
+      return item
+    }
+  }).map((restaurant) => {
     return (
       <RestaurantCard
         key={restaurant.id}
@@ -80,10 +94,11 @@ const Dashboard = () => {
         </Box>
 
         <Tabs maxW="100vw">
-          <TabList overflowX="auto" maxW="100vw">
+          <TabList overflowX="auto">
+            <Tab key={"all"} onClick={() => categoryHandler("all")}>Todos</Tab>
             {category && category}
           </TabList>
-          <TabPanels maxW="100vw">
+          <TabPanels>
             {restaurantsList && restaurantsList}
           </TabPanels>
         </Tabs>
