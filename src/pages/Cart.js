@@ -14,14 +14,13 @@ import Header from "../components/Header";
 import ProductOnCart from "../components/ProductOnCart";
 import AuthContext from "../contexts/authContext";
 import CartContext from "../contexts/cartContext";
-import RestaurantContext from "../contexts/restaurantContext";
 import useAuth from "../hooks/useAuth";
 
 const Cart = () => {
   useAuth();
   const { authStates } = useContext(AuthContext);
   const { cartStates } = useContext(CartContext);
-  const { restaurantStates } = useContext(RestaurantContext);
+
   const toast = useToast();
 
   useEffect(() => {

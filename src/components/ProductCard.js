@@ -14,11 +14,14 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import CartContext from "../contexts/cartContext";
+import { goToCart } from "../routing/Coordinator";
 
 const ProductCard = ({ idToAdd, name, description, price, photoUrl }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { cartStates, cartSetters } = useContext(CartContext);
+  const history = useHistory();
 
   const onChangeSelect = (event) => {
     cartSetters.setSelectQuantity(event.target.value);
@@ -83,7 +86,7 @@ const ProductCard = ({ idToAdd, name, description, price, photoUrl }) => {
       </Flex>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent w="60%">
+        <ModalContent w="70%">
           <ModalHeader marginTop="1em">Quantidade:</ModalHeader>
           <ModalCloseButton marginTop="0.5em" />
           <ModalBody>
@@ -108,17 +111,26 @@ const ProductCard = ({ idToAdd, name, description, price, photoUrl }) => {
               <option value={10}>10</option>
             </Select>
           </ModalBody>
-          <ModalFooter display="flex" justify="center">
-            <Button
-              variant="outline"
-              size="sm"
-              mx="auto"
-              my="1em"
-              type="submit"
-              onClick={() => addProductToCart(idToAdd)}
-            >
-              Adicionar ao carrinho
-            </Button>
+          <ModalFooter>
+            <Flex w="100%" background="tomato" p="0" justify="space-around">
+              <Button
+                variant="outline"
+                size="sm"
+                my="0.5em"
+                type="submit"
+                onClick={() => addProductToCart(idToAdd)}
+              >
+                Adicionar
+              </Button>
+              <Button
+                variant="solid"
+                size="sm"
+                my="0.5em"
+                onClick={() => goToCart(history, 1)}
+              >
+                Ir ao carrinho
+              </Button>
+            </Flex>
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -1,13 +1,12 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import React, { useContext, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Category from "../components/Category";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import RestaurantDetailsCard from "../components/RestaurantDetailsCard";
 import RestaurantContext from "../contexts/restaurantContext";
 import useAuth from "../hooks/useAuth";
-import { goToCart } from "../routing/Coordinator";
 
 const RestaurantDetails = () => {
   useAuth();
@@ -21,12 +20,9 @@ const RestaurantDetails = () => {
     restaurantRequests.getRestaurantById(restaurantId);
   }, []);
 
-  const history = useHistory();
-
   return (
     <Flex flexDirection="column" w="100vw">
       <Header>Restaurante</Header>
-      <Button onClick={() => goToCart(history, 1)}>Go To Cart Testing</Button>
       <RestaurantDetailsCard
         name={restaurantStates.restaurant.name}
         type={restaurantStates.restaurant.type}
