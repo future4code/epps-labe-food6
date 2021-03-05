@@ -1,8 +1,8 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
-import testeImg from "../images/arepas_venezuelanas.jpg";
 
-const ProductOnCart = () => {
+const ProductOnCart = ({ name, description, price, photoUrl, quantity }) => {
+  console.log(quantity);
   return (
     <Flex
       as="article"
@@ -16,9 +16,9 @@ const ProductOnCart = () => {
       <Flex w="30%" h="7em">
         <Image
           w="100%"
-          src={testeImg}
+          src={photoUrl}
           objectFit="cover"
-          alt="Arepa"
+          alt={description}
           borderRadius="8px 0 0 8px"
         />
       </Flex>
@@ -30,12 +30,12 @@ const ProductOnCart = () => {
         grow="1"
         justify="space-evenly"
       >
-        <Text color="greenPalette.400">Produto</Text>
+        <Text color="greenPalette.400">{name}</Text>
         <Text fontSize="sm" flexWrap="wrap">
-          Descrição
+          {description}
         </Text>
         <Text color="black">
-          <strong>R$ preço</strong>
+          {quantity} x <strong>R$ {price}</strong>
         </Text>
       </Flex>
     </Flex>

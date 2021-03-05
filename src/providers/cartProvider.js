@@ -13,8 +13,6 @@ const CartProvider = (props) => {
   const [selectQuantity, setSelectQuantity] = useState(0);
   const { authStates } = useContext(AuthContext);
 
-  console.log("noCartProvider", products);
-
   const getActiveOrder = async () => {
     try {
       const response = await axios.get(`${base_url}/active-order`, {

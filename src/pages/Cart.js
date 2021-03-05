@@ -60,7 +60,16 @@ const Cart = () => {
           {/* Array de cards */}
           {cartStates.products[0] ? (
             cartStates.products.map((product) => {
-              return <ProductOnCart />;
+              console.log("dentro do map", product);
+              return (
+                <ProductOnCart
+                  key={product.id}
+                  name={product.name}
+                  description={product.description}
+                  price={product.price}
+                  photoUrl={product.photoUrl}
+                />
+              );
             })
           ) : (
             <Text p="4" fontSize="xl">

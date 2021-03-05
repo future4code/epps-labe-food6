@@ -12,6 +12,7 @@ import {
   Select,
   Text,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
@@ -22,26 +23,41 @@ const ProductCard = ({ idToAdd, name, description, price, photoUrl }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { cartStates, cartSetters } = useContext(CartContext);
   const history = useHistory();
+  const toast = useToast();
 
   const onChangeSelect = (event) => {
     cartSetters.setSelectQuantity(event.target.value);
   };
 
-  const addProductToCart = (productId, quantity) => {
-    if (cartStates.selectQuantity) {
+  const addProductToCart = (productId) => {
+    if (cartStates.selectQuantity !== 0) {
       const newProduct = {
         id: productId,
-        quantity: cartStates.selectQuantity,
+        name: name,
+        description: description,
+        price: price,
+        photoUrl: photoUrl,
+        quantity: Number(cartStates.selectQuantity),
       };
       let newCart = [...cartStates.products, newProduct];
       cartSetters.setProducts(newCart);
-
-      alert(`Foi adicionado ${newProduct.quantity} ao carrinho`);
+      cartSetters.setSelectQuantity(0);
+      console.log("Objeto novo produto", newProduct);
+      toast({
+        title: "O produto foi adicionado ao carrinho",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
     } else {
-      alert("Por favor selecione a quantidade");
+      toast({
+        title: "Por favor, selecione a quantidade",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
-  console.log(cartStates.products);
   return (
     <Flex
       as="article"
@@ -98,7 +114,7 @@ const ProductCard = ({ idToAdd, name, description, price, photoUrl }) => {
               onChange={onChangeSelect}
               isRequired
             >
-              <option isDisabled>Selecione:</option>
+              <option isdisabled>Selecione:</option>
               <option value={1}>1</option>
               <option value={2}>2</option>
               <option value={3}>3</option>
@@ -112,7 +128,7 @@ const ProductCard = ({ idToAdd, name, description, price, photoUrl }) => {
             </Select>
           </ModalBody>
           <ModalFooter>
-            <Flex w="100%" background="tomato" p="0" justify="space-around">
+            <Flex w="100%" direction="column" p="0" justify="space-around">
               <Button
                 variant="outline"
                 size="sm"
