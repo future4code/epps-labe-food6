@@ -1,7 +1,7 @@
 ## futureEats
 
 ## Surge:
-super-riddle.surge.sh
+like-ink.surge.sh
 
 ## Integrantes do grupo:
 
