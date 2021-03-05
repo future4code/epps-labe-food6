@@ -23,7 +23,7 @@ const Footer = () => {
       position="fixed"
       bottom="0"
       bgColor="neutralPalette.100"
-      borderTop="1px solid"
+      borderY="1px solid"
       borderColor="neutralPalette.400"
     >
       <Flex

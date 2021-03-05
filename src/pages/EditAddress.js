@@ -26,7 +26,9 @@ const EditAddress = () => {
   const history = useHistory();
 
   useEffect(() => {
-    authRequests.getAddress();
+    if (authStates.user.hasAddress) {
+      authRequests.getAddress();
+    }
   }, [authRequests]);
 
   const updateAddress = async (userAddress) => {

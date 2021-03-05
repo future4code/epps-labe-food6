@@ -30,7 +30,7 @@ const CartProvider = (props) => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
+    if (token && authStates.user.hasAddress) {
       getActiveOrder();
     }
   }, []);
