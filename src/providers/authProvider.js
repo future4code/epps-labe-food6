@@ -41,9 +41,9 @@ const AuthProvider = (props) => {
     setToken(localStorage.getItem("token"));
     if (token) {
       getUserByToken();
-      if (authStates.user.hasAddress) {
-        getAddress();
-      }
+    }
+    if (authStates.user.hasAddress) {
+      getAddress();
     }
   }, [token]);
 

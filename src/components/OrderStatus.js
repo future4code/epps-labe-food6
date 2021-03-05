@@ -18,7 +18,7 @@ const OrderStatus = () => {
       zIndex="5"
     >
       <TimeIcon color="white" marginX="4" fontSize="32px" />
-      <Box pX="4">
+      <Box paddingX="4">
         <Text color="white">Pedido em andamento</Text>
         <Text>{cartStates.restaurantName && cartStates.restaurantName}</Text>
         <Text fontWeight="500">
